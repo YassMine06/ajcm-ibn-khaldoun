@@ -1,0 +1,6 @@
+/* Component specific styles are in their respective CSS files */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
