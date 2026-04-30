@@ -39,11 +39,11 @@ const Footer = () => {
           <h4 className="footer-heading">LIENS RAPIDES</h4>
           <ul className="footer-list links">
             <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#evenements">Événements</a></li>
             <li><a href="#apropos">À propos</a></li>
-            <li><a href="#actualites">Actualités</a></li>
             <li><a href="#actions">Nos actions</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#impact">Notre Impact</a></li>
+            <li><a href="#projets">Nos Projets</a></li>
+            <li><a href="#evenements">Événements</a></li>
           </ul>
         </div>
 

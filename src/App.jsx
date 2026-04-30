@@ -1,10 +1,10 @@
-import Header from './components/Header'
-import APropos from './components/APropos'
-import NosActions from './components/NosActions'
-import NotreImpact from './components/NotreImpact'
-import NosProjets from './components/NosProjets'
-import EvenementsTestimonials from './components/EvenementsTestimonials'
-import CTABanner from './components/CTABanner'
+import Header from './components/Accueil/Header'
+import APropos from './components/Accueil/APropos'
+import NosActions from './components/Accueil/NosActions'
+import NotreImpact from './components/Accueil/NotreImpact'
+import NosProjets from './components/Accueil/NosProjets'
+import EvenementsAccueil from './components/Accueil/EvenementsAccueil'
+import CTABanner from './components/Accueil/CTABanner'
 import Footer from './components/Footer'
 import './App.css'
 
@@ -17,7 +17,7 @@ function App() {
         <NosActions />
         <NotreImpact />
         <NosProjets />
-        <EvenementsTestimonials />
+        <EvenementsAccueil />
       </main>
       <CTABanner />
       <Footer />

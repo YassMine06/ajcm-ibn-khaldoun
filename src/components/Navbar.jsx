@@ -52,7 +52,7 @@ const Navbar = () => {
             ))}
           </ul>
         <div className="nav-actions">
-            <button className="btn-enroll">S'inscrire</button>
+            <a href="#rejoindre" className="btn-enroll">S'inscrire</a>
           </div>
         </div>
 
