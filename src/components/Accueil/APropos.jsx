@@ -55,7 +55,7 @@ const APropos = () => (
           Devenue association nationale en 2019, elle déploie son action autour de quatre piliers :
           Éducation, Action Sociale, Formation et Rayonnement Culturel.
         </p>
-        <a href="#actions" className="btn-savoir-plus">EN SAVOIR PLUS</a>
+        <a href="/description" className="btn-savoir-plus">EN SAVOIR PLUS</a>
       </div>
 
       <div className="apropos-image">

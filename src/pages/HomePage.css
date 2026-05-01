@@ -1,0 +1,34 @@
+/* ═══════════════════════════════════════
+   HOME PAGE - Optimized Parallax Pattern
+═══════════════════════════════════════ */
+
+/* We apply clip-path to sections to create a stacking context.
+   This allows us to place a fixed pseudo-element behind the content 
+   (so cards are NOT transparent/overlaid) but IN FRONT of the background color! */
+main > section {
+    position: relative;
+    clip-path: inset(0); /* Clips the fixed background to the section boundaries */
+}
+
+main > section::before {
+    content: '';
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background-image: url('/bachground_home.svg');
+    background-size: cover;
+    background-position: center;
+    
+    /* z-index -1 inside a stacking context places it BEHIND the cards/content,
+       but ON TOP of the section's own background-color! */
+    z-index: -1; 
+    pointer-events: none;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+    
+    /* Hardware acceleration to prevent scroll lag */
+    transform: translateZ(0);
+    will-change: transform;
+}

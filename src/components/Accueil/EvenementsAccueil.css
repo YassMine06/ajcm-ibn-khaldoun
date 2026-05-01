@@ -1,7 +1,8 @@
 /* ── Événements + Testimonials ── */
 .evt-section {
   padding: 90px 60px;
-  background: #f9f7f4;
+  /* background: #f9f7f4; */
+  background: #ffffff;
 }
 
 .evt-container {

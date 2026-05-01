@@ -19,10 +19,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Description',  href: '/description' },
-    { name: 'Événements',   href: '/evenements' },
     { name: 'Annonces',     href: '/#annonces' },
+    { name: 'Événements',   href: '/evenements' },
     { name: 'Calendrier',   href: '/#calendrier' },
-    { name: 'Membres',      href: '/#membres' },
     { name: 'Partenaires',  href: '/#partenaires' },
     { name: 'Contact',      href: '/#contact' },
   ];

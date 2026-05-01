@@ -7,6 +7,7 @@ import NosEvenements from '../components/Accueil/NosProjets';
 import EvenementsAccueil from '../components/Accueil/EvenementsAccueil';
 import CTABanner from '../components/Accueil/CTABanner';
 import Footer from '../components/Footer';
+import './HomePage.css';
 
 const HomePage = () => {
   return (
@@ -14,7 +15,7 @@ const HomePage = () => {
       <Header />
       <main>
         <APropos />
-        <NosActions />
+        {/* <NosActions /> */}
         <NotreImpact />
         <NosEvenements />
         <EvenementsAccueil />
