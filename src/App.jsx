@@ -1,28 +1,20 @@
-import Header from './components/Accueil/Header'
-import APropos from './components/Accueil/APropos'
-import NosActions from './components/Accueil/NosActions'
-import NotreImpact from './components/Accueil/NotreImpact'
-import NosProjets from './components/Accueil/NosProjets'
-import EvenementsAccueil from './components/Accueil/EvenementsAccueil'
-import CTABanner from './components/Accueil/CTABanner'
-import Footer from './components/Footer'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import DescriptionPage from './pages/DescriptionPage';
+import './App.css';
 
 function App() {
   return (
-    <div className="app-container">
-      <Header />
-      <main>
-        <APropos />
-        <NosActions />
-        <NotreImpact />
-        <NosProjets />
-        <EvenementsAccueil />
-      </main>
-      <CTABanner />
-      <Footer />
-    </div>
-  )
+    <Router>
+      <div className="app-container">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/description" element={<DescriptionPage />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;

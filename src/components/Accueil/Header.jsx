@@ -21,9 +21,9 @@ const Header = () => {
             <span className="hero-title-highlight">JEUNESSE.</span>
           </h1>
           <p className="hero-subtitle">
-            Nous œuvrons pour une société plus juste,<br />
-            inclusive et engagée, en donnant aux jeunes<br />
-            les clés pour construire le changement.
+            Organisation éducative, culturelle et de recherche,<br />
+            bénévole et indépendante au service de la citoyenneté<br />
+            et du développement humain depuis 1976.
           </p>
           <div className="hero-buttons">
             <a href="#actions" className="btn-primary-hero">

@@ -26,21 +26,21 @@ const pillars = [
   {
     Icon: MissionIcon,
     title: 'NOTRE MISSION',
-    text: 'Encourager et accompagner les jeunes à devenir des citoyens actifs et responsables.',
+    text: 'Soutenir les activités au profit des enfants, jeunes, femmes et chercheurs, sans affiliation politique.',
     color: '#4a7c59',
     bg: '#edf4ef',
   },
   {
     Icon: VisionIcon,
     title: 'NOTRE VISION',
-    text: "Une société inclusive où chaque jeune a les moyens d'agir et de réussir.",
+    text: "Quatre piliers stratégiques : Éducation, Action Sociale, Formation et Animation Culturelle.",
     color: '#C9A227',
     bg: '#fdf7e6',
   },
   {
     Icon: ValeursIcon,
     title: 'NOS VALEURS',
-    text: 'Respect, solidarité, intégrité, engagement et innovation.',
+    text: 'Citoyenneté active, Indépendance, Solidarité inclusive, Excellence et Rayonnement.',
     color: '#b03a2e',
     bg: '#fbeeed',
   },
@@ -55,12 +55,12 @@ const APropos = () => (
         <h2 className="apropos-title">À PROPOS DE NOUS</h2>
         <div className="apropos-title-line"></div>
         <p className="apropos-desc">
-          A.J.C.M est une association engagée pour promouvoir la citoyenneté active, la culture
-          du dialogue et l'inclusion des jeunes dans la vie de la société.
+          Fondée en 1976 à Casablanca, l'A.J.C.M est une organisation éducative, culturelle et de recherche, 
+          bénévole et indépendante, œuvrant au profit de la jeunesse et de la citoyenneté.
         </p>
         <p className="apropos-desc">
-          Depuis notre création, nous accompagnons les jeunes à développer leurs compétences,
-          à croire en leurs idées et à agir pour un impact positif et durable.
+          Devenue association nationale en 2019, elle déploie son action autour de quatre piliers : 
+          Éducation, Action Sociale, Formation et Rayonnement Culturel.
         </p>
         <a href="#actions" className="btn-savoir-plus">EN SAVOIR PLUS</a>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -13,14 +14,13 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Historique', href: '#historique' },
-    { name: 'Description', href: '#description' },
-    { name: 'Événements', href: '#evenements' },
-    { name: 'Calendrier', href: '#calendrier' },
-    { name: 'Membres', href: '#membres' },
-    { name: 'Trophées', href: '#trophees' },
-    { name: 'Partenaires', href: '#partenaires' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Description', href: '/description' },
+    { name: 'Annonces', href: '/#annonces' },
+    { name: 'Événements', href: '/#evenements' },
+    { name: 'Calendrier', href: '/#calendrier' },
+    { name: 'Membres', href: '/#membres' },
+    { name: 'Partenaires', href: '/#partenaires' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -28,26 +28,26 @@ const Navbar = () => {
       <div className="nav-container">
 
         {/* ── Logo ── */}
-        <a href="#accueil" className="nav-logo">
+        <Link to="/" className="nav-logo">
           <img src="/logo_ajcm.svg" alt="Logo AJCM" className="nav-logo-img" />
           <div className="nav-logo-text">
             <span className="nav-logo-title">A.J.C.M</span>
             <span className="nav-logo-sub">ASSOCIATION JEUNESSE <br />DE LA CITOYENNET MAROCAINE<br />MOHAMMEDIA IBN KHALDOUN</span>
           </div>
-        </a>
+        </Link>
 
         {/* ── Links ── */}
         <div className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
           <ul className="nav-links">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   className={activeLink === link.name ? 'active' : ''}
                   onClick={() => { setActiveLink(link.name); setMobileMenuOpen(false); }}
                 >
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
