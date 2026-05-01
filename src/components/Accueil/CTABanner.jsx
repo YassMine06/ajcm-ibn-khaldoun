@@ -13,8 +13,7 @@ const CTABanner = () => (
         </div>
       </div>
       <div className="cta-buttons">
-        <Link to="/inscription?tab=membre" className="btn-benevole">DEVENIR BÉNÉVOLE</Link>
-        <Link to="/inscription?tab=membre" className="btn-membre">DEVENIR MEMBRE</Link>
+        <Link to="/inscription?tab=membre" className="btn-benevole">DEVENIR BÉNÉVOLE / MEMBRE</Link>
       </div>
     </div>
   </section>

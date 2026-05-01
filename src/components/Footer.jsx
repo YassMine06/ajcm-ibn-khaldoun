@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Footer.css';
 
+
 const Footer = () => {
   const [email, setEmail] = useState('');
 
@@ -20,7 +21,6 @@ const Footer = () => {
             <a href="#fb" aria-label="Facebook" className="social-icon">f</a>
             <a href="#ig" aria-label="Instagram" className="social-icon">ig</a>
             <a href="#li" aria-label="LinkedIn" className="social-icon">in</a>
-            <a href="#yt" aria-label="YouTube" className="social-icon">▶</a>
           </div>
         </div>
 
@@ -47,7 +47,7 @@ const Footer = () => {
         </div>
 
         {/* Newsletter */}
-        <div className="footer-col">
+        {/* <div className="footer-col">
           <h4 className="footer-heading">NEWSLETTER</h4>
           <p className="footer-newsletter-text">Inscrivez-vous pour ne rien manquer.</p>
           <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
@@ -59,11 +59,11 @@ const Footer = () => {
             />
             <button type="submit">→</button>
           </form>
-        </div>
+        </div> */}
       </div>
 
       <div className="footer-bottom">
-        <span>© 2024 A.J.C.M — Tous droits réservés.</span>
+        <span>© {new Date().getFullYear()} A.J.C.M — Tous droits réservés.</span>
         <div className="footer-legal">
           <a href="#mentions">Mentions légales</a>
           <a href="#confidentialite">Politique de confidentialité</a>
