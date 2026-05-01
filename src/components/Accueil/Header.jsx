@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../Navbar';
+import NotreImpact from './NotreImpact';
 import './Header.css';
 
 const Header = () => {
@@ -15,18 +16,21 @@ const Header = () => {
 
         <div className="hero-content">
           <h1 className="hero-title">
-            CULTIVER LA <br />
-            <span className="hero-title-highlight">CITOYENNETÉ.</span><br />
-            INSPIRER LA <br />
-            <span className="hero-title-highlight">JEUNESSE.</span>
+            CULTIVER LA <span className="hero-title-highlight">CITOYENNETÉ.</span><br />
+            INSPIRER LA <span className="hero-title-highlight">JEUNESSE.</span>
           </h1>
-          <p className="hero-subtitle">
+          {/* <p className="hero-subtitle">
             Organisation éducative, culturelle et de recherche,<br />
             bénévole et indépendante au service de la citoyenneté<br />
             et du développement humain depuis 1976.
-          </p>
+          </p> */}
+          <div className="hero-impact-wrapper">
+            <NotreImpact />
+          </div>
+          <br/>
+
           <div className="hero-buttons">
-            <a href="#actions" className="btn-primary-hero">DÉCOUVRIR NOS ACTIONS</a>
+            <a href="#projets" className="btn-primary-hero">DÉCOUVRIR NOS ACTIONS</a>
             <a href="#rejoindre" className="btn-secondary-hero">NOUS REJOINDRE</a>
           </div>
         </div>

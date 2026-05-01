@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../components/Accueil/Header';
 import APropos from '../components/Accueil/APropos';
-import NotreImpact from '../components/Accueil/NotreImpact';
 import NosEvenements from '../components/Accueil/NosEvenement';
 import Annonces from '../components/Accueil/Annonces';
 import Partenaires from '../components/Accueil/Partenaires';
@@ -15,7 +14,6 @@ const HomePage = () => {
       <Header />
       <main>
         <APropos />
-        <NotreImpact />
         <Annonces />
         <NosEvenements />
         <Partenaires />

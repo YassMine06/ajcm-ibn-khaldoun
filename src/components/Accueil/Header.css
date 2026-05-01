@@ -21,6 +21,14 @@
   justify-content: flex-start;
 }
 
+.hero-impact-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width:500px;
+  margin: 10px 10px;
+}
+
 /* Background image */
 .hero-background {
   position: absolute;
@@ -54,7 +62,7 @@
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 560px;
+  max-width: 1000px;
   padding: 0 60px;
   /* push content down slightly so it sits visually centre of the visible area below navbar */
   margin-top: 60px;
@@ -164,5 +172,10 @@
   .hero-buttons {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .hero-impact-wrapper {
+    padding: 0 24px;
+    margin-top: 30px;
   }
 }
