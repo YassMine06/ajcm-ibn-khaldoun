@@ -8,8 +8,12 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState('Accueil');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      setScrolled(scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // check immediately on mount
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

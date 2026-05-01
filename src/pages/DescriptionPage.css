@@ -2,7 +2,7 @@
   background-color: #f8f9fa;
   color: #333;
   font-family: 'Outfit', sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .container {
@@ -297,28 +297,5 @@
   .message-card {
     padding: 2rem;
   }
-}
-
-/* ── RTL / Arabic Mode ── */
-[dir="rtl"] .history-content h2::after {
-  left: auto;
-  right: 0;
-}
-
-[dir="rtl"] .slogan-box {
-  border-left: none;
-  border-right: 5px solid #C9A227;
-  border-radius: 15px 0 0 15px;
-}
-
-[dir="rtl"] .message-author-info {
-  border-left: none;
-  border-right: 2px solid #eee;
-  padding-left: 0;
-  padding-right: 3rem;
-}
-
-.message-card-ar .message-author-info {
-  text-align: right;
 }
 
