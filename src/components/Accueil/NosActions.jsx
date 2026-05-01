@@ -54,12 +54,13 @@ const actions = [
 
 const NosActions = () => (
   <section className="actions-section" id="actions">
-    <div className="actions-header">
-      <h2 className="section-title-centered">NOS ACTIONS</h2>
-      <div className="title-divider"></div>
-    </div>
-    <div className="actions-grid">
-      {actions.map((a) => (
+    <div className="actions-container">
+      <div className="actions-header">
+        <h2 className="section-title-centered">NOS ACTIONS</h2>
+        <div className="title-divider"></div>
+      </div>
+      <div className="actions-grid">
+        {actions.map((a) => (
         <div className="action-card" key={a.title}>
           <div className="action-top">
             <div className="action-icon-wrap" style={{ background: a.bg, color: a.color }}>
@@ -77,6 +78,7 @@ const NosActions = () => (
           </a>
         </div>
       ))}
+    </div>
     </div>
   </section>
 );

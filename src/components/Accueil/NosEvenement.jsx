@@ -31,30 +31,32 @@ const evenementsRecents = [
 
 const NosEvenements = () => (
   <section className="projets-section" id="projets">
-    <div className="section-header center-align">
-      <h2 className="section-title">NOS ÉVÉNEMENTS RÉCENTS</h2>
-      <div className="section-divider"></div>
-    </div>
-    <div className="projets-grid">
-      {evenementsRecents.map((evt) => (
-        <div className="projet-card" key={evt.folder}>
-          <div className="projet-img-wrap">
-            <img
-              src={`/Evenements/${encodeURIComponent(evt.folder)}/poster.jpg`}
-              alt={evt.title}
-              onError={(e) => { e.target.src = '/logo_ajcm.svg'; }}
-            />
-            <span className="evt-tag-badge" style={{ background: evt.color }}>{evt.tag}</span>
+    <div className="projets-container">
+      <div className="section-header center-align">
+        <h2 className="section-title">NOS ÉVÉNEMENTS RÉCENTS</h2>
+        <div className="section-divider"></div>
+      </div>
+      <div className="projets-grid">
+        {evenementsRecents.map((evt) => (
+          <div className="projet-card" key={evt.folder}>
+            <div className="projet-img-wrap">
+              <img
+                src={`/Evenements/${encodeURIComponent(evt.folder)}/poster.jpg`}
+                alt={evt.title}
+                onError={(e) => { e.target.src = '/logo_ajcm.svg'; }}
+              />
+              <span className="evt-tag-badge" style={{ background: evt.color }}>{evt.tag}</span>
+            </div>
+            <div className="projet-body">
+              <h3 className="projet-title">{evt.title}</h3>
+              <p className="projet-desc">{evt.desc}</p>
+              <Link to="/evenements" className="projet-link">
+                VOIR TOUS LES ÉVÉNEMENTS →
+              </Link>
+            </div>
           </div>
-          <div className="projet-body">
-            <h3 className="projet-title">{evt.title}</h3>
-            <p className="projet-desc">{evt.desc}</p>
-            <Link to="/evenements" className="projet-link">
-              VOIR TOUS LES ÉVÉNEMENTS →
-            </Link>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </section>
 );
