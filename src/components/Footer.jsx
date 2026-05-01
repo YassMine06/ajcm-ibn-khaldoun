@@ -7,13 +7,13 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-main">
-        {/* Logo column */}
+        {/* Logo */}
         <div className="footer-col footer-brand">
           <div className="footer-logo">
             <img src="/logo_ajcm.svg" alt="Logo AJCM" />
             <div>
               <span className="footer-logo-title">A.J.C.M</span>
-              <span className="footer-logo-sub">ASSOCIATION AJCM POUR<br />LA CULTURE &amp; LA MÉDIATION</span>
+              <span className="footer-logo-sub">ASSOCIATION JEUNESSE <br />DE LA CITOYENNETÉ MAROCAINE</span>
             </div>
           </div>
           <div className="footer-socials">
@@ -30,7 +30,7 @@ const Footer = () => {
           <ul className="footer-list">
             <li>✉ contact@ajcm.ma</li>
             <li>📞 +212 6 12 34 56 78</li>
-            <li>📍 Rabat, Maroc</li>
+            <li>📍 Mohammedia, Maroc</li>
           </ul>
         </div>
 
@@ -38,19 +38,18 @@ const Footer = () => {
         <div className="footer-col">
           <h4 className="footer-heading">LIENS RAPIDES</h4>
           <ul className="footer-list links">
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#apropos">À propos</a></li>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/description">Description</a></li>
+            <li><a href="/evenements">Événements</a></li>
             <li><a href="#actions">Nos actions</a></li>
             <li><a href="#impact">Notre Impact</a></li>
-            <li><a href="#projets">Nos Projets</a></li>
-            <li><a href="#evenements">Événements</a></li>
           </ul>
         </div>
 
         {/* Newsletter */}
         <div className="footer-col">
           <h4 className="footer-heading">NEWSLETTER</h4>
-          <p className="footer-newsletter-text">Inscrivez-vous à notre newsletter pour ne rien manquer.</p>
+          <p className="footer-newsletter-text">Inscrivez-vous pour ne rien manquer.</p>
           <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
             <input
               type="email"

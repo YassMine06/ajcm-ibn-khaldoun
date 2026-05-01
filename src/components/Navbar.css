@@ -166,6 +166,9 @@
 /* ── Actions (right) ── */
 .nav-actions {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 /* ── Bouton S'inscrire ── */

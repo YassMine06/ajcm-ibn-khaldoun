@@ -26,12 +26,8 @@ const Header = () => {
             et du développement humain depuis 1976.
           </p>
           <div className="hero-buttons">
-            <a href="#actions" className="btn-primary-hero">
-              DÉCOUVRIR NOS ACTIONS
-            </a>
-            <a href="#rejoindre" className="btn-secondary-hero">
-              NOUS REJOINDRE
-            </a>
+            <a href="#actions" className="btn-primary-hero">DÉCOUVRIR NOS ACTIONS</a>
+            <a href="#rejoindre" className="btn-secondary-hero">NOUS REJOINDRE</a>
           </div>
         </div>
       </div>

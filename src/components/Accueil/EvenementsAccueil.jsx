@@ -1,30 +1,25 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './EvenementsAccueil.css';
 
 const evenements = [
   {
-    day: '15',
-    month: 'JUN',
-    color: '#4a7c59',
+    day: '15', month: 'JUN', color: '#4a7c59',
     title: 'Atelier : Prise de parole en public',
     date: '15 Juin 2024 • Rabat',
     desc: 'Un atelier pratique pour gagner en confiance et mieux communiquer.',
   },
   {
-    day: '28',
-    month: 'JUN',
-    color: '#C9A227',
+    day: '28', month: 'JUN', color: '#C9A227',
     title: 'Forum des citoyens',
     date: '28 Juin 2024 • Casablanca',
-    desc: 'Rencontre et échanges autour de l\'engagement citoyen des jeunes.',
+    desc: "Rencontre et échanges autour de l'engagement citoyen des jeunes.",
   },
   {
-    day: '10',
-    month: 'JUL',
-    color: '#c0392b',
+    day: '10', month: 'JUL', color: '#c0392b',
     title: 'Journée solidaire',
     date: '10 Juillet 2024 • Marrakech',
-    desc: 'Une journée d\'action solidaire au service de la communauté.',
+    desc: "Une journée d'action solidaire au service de la communauté.",
   },
 ];
 
@@ -73,7 +68,7 @@ const EvenementsTestimonials = () => {
               </div>
             ))}
           </div>
-          <a href="#evenements" className="btn-agenda">VOIR TOUS LES ÉVÉNEMENTS →</a>
+          <Link to="/evenements" className="btn-agenda">VOIR TOUS LES ÉVÉNEMENTS →</Link>
         </div>
 
         {/* ── Testimonials ── */}
@@ -92,14 +87,9 @@ const EvenementsTestimonials = () => {
           </div>
           <div className="testimonial-dots">
             {testimonials.map((_, i) => (
-              <button
-                key={i}
-                className={`dot ${i === slide ? 'active' : ''}`}
-                onClick={() => setSlide(i)}
-              />
+              <button key={i} className={`dot ${i === slide ? 'active' : ''}`} onClick={() => setSlide(i)} />
             ))}
           </div>
-          {/* Partenaires logos */}
           <div className="partenaires-row">
             <img src="/partenaria/FNCV.jpg" alt="FNCV" className="partner-logo" />
             <div className="partner-placeholder">OCP</div>

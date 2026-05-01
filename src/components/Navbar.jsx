@@ -14,13 +14,13 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Description', href: '/description' },
-    { name: 'Annonces', href: '/#annonces' },
-    { name: 'Événements', href: '/#evenements' },
-    { name: 'Calendrier', href: '/#calendrier' },
-    { name: 'Membres', href: '/#membres' },
-    { name: 'Partenaires', href: '/#partenaires' },
-    { name: 'Contact', href: '/#contact' },
+    { name: 'Description',  href: '/description' },
+    { name: 'Événements',   href: '/evenements' },
+    { name: 'Annonces',     href: '/#annonces' },
+    { name: 'Calendrier',   href: '/#calendrier' },
+    { name: 'Membres',      href: '/#membres' },
+    { name: 'Partenaires',  href: '/#partenaires' },
+    { name: 'Contact',      href: '/#contact' },
   ];
 
   return (
@@ -32,7 +32,9 @@ const Navbar = () => {
           <img src="/logo_ajcm.svg" alt="Logo AJCM" className="nav-logo-img" />
           <div className="nav-logo-text">
             <span className="nav-logo-title">A.J.C.M</span>
-            <span className="nav-logo-sub">ASSOCIATION JEUNESSE <br />DE LA CITOYENNET MAROCAINE<br />MOHAMMEDIA IBN KHALDOUN</span>
+            <span className="nav-logo-sub">
+              ASSOCIATION JEUNESSE <br />DE LA CITOYENNETÉ MAROCAINE<br />MOHAMMEDIA IBN KHALDOUN
+            </span>
           </div>
         </Link>
 
@@ -51,7 +53,7 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-        <div className="nav-actions">
+          <div className="nav-actions">
             <a href="#rejoindre" className="btn-enroll">S'inscrire</a>
           </div>
         </div>
