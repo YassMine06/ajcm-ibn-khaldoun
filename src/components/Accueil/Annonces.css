@@ -1,0 +1,178 @@
+/* ── Annonces & Événements Section ── */
+.evt-section {
+  padding: 90px 60px;
+  background: #ffffff;
+}
+
+.evt-container-full {
+  max-width: 1280px;
+  margin: 0 auto;
+  /* background-color: #f40ee; */
+  padding: 60px 50px;
+  border-radius: 20px;
+}
+
+/* ── Grid of Cards ── */
+.annonces-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+/* ── Single Card (Bloc Carré) ── */
+.annonce-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.annonce-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Date Ribbon ── */
+.annonce-date-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 20px;
+  color: #fff;
+}
+
+.annonce-day {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.annonce-month {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* ── Content ── */
+.annonce-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.annonce-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.annonce-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: #777;
+  font-weight: 500;
+}
+
+.annonce-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+  margin-top: 4px;
+}
+
+/* ── Card Footer & Button ── */
+.annonce-footer {
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+.btn-inscrire-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4a7c59;
+  background: transparent;
+  padding: 10px 0;
+  border: 1.5px solid #4a7c59;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-inscrire-card:hover {
+  background: #4a7c59;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(74, 124, 89, 0.2);
+}
+
+/* ── Button ── */
+.btn-agenda {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1a1a1a;
+  background: #C9A227;
+  padding: 12px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(201, 162, 39, 0.3);
+}
+
+.btn-agenda:hover {
+  background: #e0b82e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 162, 39, 0.4);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .evt-section {
+    padding: 60px 24px;
+  }
+  .evt-container-full {
+    padding: 40px 30px;
+  }
+  .annonces-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .evt-container-full {
+    padding: 30px 20px;
+  }
+  .annonce-title {
+    font-size: 1.05rem;
+  }
+}

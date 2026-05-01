@@ -4,7 +4,7 @@ import APropos from '../components/Accueil/APropos';
 import NosActions from '../components/Accueil/NosActions';
 import NotreImpact from '../components/Accueil/NotreImpact';
 import NosEvenements from '../components/Accueil/NosProjets';
-import EvenementsAccueil from '../components/Accueil/EvenementsAccueil';
+import EvenementsAccueil from '../components/Accueil/Annonces';
 import CTABanner from '../components/Accueil/CTABanner';
 import Footer from '../components/Footer';
 import './HomePage.css';

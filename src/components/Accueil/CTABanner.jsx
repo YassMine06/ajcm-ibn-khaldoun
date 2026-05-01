@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './CTABanner.css';
 
 const CTABanner = () => (
@@ -12,8 +13,8 @@ const CTABanner = () => (
         </div>
       </div>
       <div className="cta-buttons">
-        <a href="mailto:contact@ajcm.ma" className="btn-benevole">DEVENIR BÉNÉVOLE</a>
-        <a href="mailto:contact@ajcm.ma" className="btn-membre">DEVENIR MEMBRE</a>
+        <Link to="/inscription?tab=membre" className="btn-benevole">DEVENIR BÉNÉVOLE</Link>
+        <Link to="/inscription?tab=membre" className="btn-membre">DEVENIR MEMBRE</Link>
       </div>
     </div>
   </section>
