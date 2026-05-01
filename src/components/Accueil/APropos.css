@@ -61,8 +61,10 @@
 /* ── Center image ── */
 .apropos-image {
   border-radius: 10px;
-  width: 400px;
-  height: 300px;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  margin: 0 auto;
   overflow: hidden;
   box-shadow: 0 12px 40px rgba(0,0,0,0.13);
   aspect-ratio: 4/5;
@@ -145,6 +147,7 @@
     grid-template-areas:
       "left image"
       "pillars pillars";
+    padding: 40px;
   }
   .apropos-left   { grid-area: left; }
   .apropos-image  { grid-area: image; aspect-ratio: 1/1; }
@@ -153,10 +156,11 @@
 }
 
 @media (max-width: 768px) {
-  .apropos-section { padding: 60px 20px; }
+  .apropos-section { padding: 40px 20px; }
   .apropos-container {
     grid-template-columns: 1fr;
     grid-template-areas: "left" "image" "pillars";
+    padding: 24px;
   }
   .apropos-image { aspect-ratio: 16/9; }
   .pillar-card { flex: 1 1 100%; }

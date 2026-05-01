@@ -139,3 +139,29 @@
   .actions-section { padding: 60px 20px; }
   .actions-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .actions-container {
+    grid-template-columns: 1fr 1fr;
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .actions-section { padding: 40px 20px; }
+  .actions-container {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 30px;
+  }
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions-container {
+    padding: 20px 15px;
+  }
+}

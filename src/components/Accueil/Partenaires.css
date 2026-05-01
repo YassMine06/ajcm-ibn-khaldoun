@@ -56,11 +56,23 @@
 }
 
 /* ── Responsive ── */
+@media (max-width: 900px) {
+  .partenaires-container {
+    padding: 30px 0;
+  }
+}
+
 @media (max-width: 768px) {
   .partner-logo {
     margin: 0 20px;
   }
   .partner-logo img {
     height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .partenaires-container {
+    padding: 20px 0;
   }
 }
