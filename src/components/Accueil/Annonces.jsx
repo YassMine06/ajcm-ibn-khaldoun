@@ -41,7 +41,7 @@ const testimonials = [
   },
 ];
 
-const EvenementsTestimonials = () => {
+const Annonces = () => {
   const [slide, setSlide] = useState(0);
 
   return (
@@ -85,4 +85,4 @@ const EvenementsTestimonials = () => {
   );
 };
 
-export default EvenementsTestimonials;
+export default Annonces;

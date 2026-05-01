@@ -1,10 +1,9 @@
 import React from 'react';
 import Header from '../components/Accueil/Header';
 import APropos from '../components/Accueil/APropos';
-import NosActions from '../components/Accueil/NosActions';
 import NotreImpact from '../components/Accueil/NotreImpact';
-import NosEvenements from '../components/Accueil/NosProjets';
-import EvenementsAccueil from '../components/Accueil/Annonces';
+import NosEvenements from '../components/Accueil/NosEvenement';
+import Annonces from '../components/Accueil/Annonces';
 import CTABanner from '../components/Accueil/CTABanner';
 import Footer from '../components/Footer';
 import './HomePage.css';
@@ -15,10 +14,9 @@ const HomePage = () => {
       <Header />
       <main>
         <APropos />
-        {/* <NosActions /> */}
         <NotreImpact />
         <NosEvenements />
-        <EvenementsAccueil />
+        <Annonces />
       </main>
       <CTABanner />
       <Footer />
