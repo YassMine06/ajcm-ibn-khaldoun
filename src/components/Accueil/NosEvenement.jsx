@@ -31,8 +31,8 @@ const evenementsRecents = [
 
 const NosEvenements = () => (
   <section className="projets-section" id="projets">
-    <div className="section-header">
-      <h2 className="section-title">NOS ÉVÉNEMENTS RÉCENTS</h2><br/>
+    <div className="section-header center-align">
+      <h2 className="section-title">NOS ÉVÉNEMENTS RÉCENTS</h2>
       <div className="section-divider"></div>
     </div>
     <div className="projets-grid">

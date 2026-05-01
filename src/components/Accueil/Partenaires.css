@@ -1,0 +1,67 @@
+/* ── Section Partenaires ── */
+.partenaires-section {
+  padding: 80px 0;
+  background-color: #fff;
+  overflow: hidden;
+  text-align: center;
+}
+
+.partenaires-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Make sure the header has some padding since the container is full width */
+.partenaires-section .section-header {
+  padding: 0 20px;
+}
+
+/* ── Marquee Animation ── */
+.marquee-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-content {
+  display: flex;
+  width: fit-content;
+  animation: scroll-left 20s linear infinite;
+}
+
+.partner-logo {
+  flex: 0 0 auto;
+  margin: 0 40px;
+  display: flex;
+  align-items: center;
+}
+
+.partner-logo img {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.partner-logo img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .partner-logo {
+    margin: 0 20px;
+  }
+  .partner-logo img {
+    height: 70px;
+  }
+}

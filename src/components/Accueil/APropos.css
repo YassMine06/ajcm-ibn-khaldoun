@@ -25,25 +25,7 @@
   padding-top: 4px;
 }
 
-.apropos-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.55rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #1a1a1a;
-  margin: 0;
-  line-height: 1.2;
-}
 
-/* Short green underline bar */
-.apropos-title-line {
-  width: 48px;
-  height: 3px;
-  background: #4a7c59;
-  border-radius: 2px;
-  margin-bottom: 4px;
-}
 
 .apropos-desc {
   font-family: 'Inter', sans-serif;

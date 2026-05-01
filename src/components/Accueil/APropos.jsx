@@ -45,8 +45,10 @@ const APropos = () => (
     <div className="apropos-container">
 
       <div className="apropos-left">
-        <h2 className="apropos-title">À PROPOS DE NOUS</h2>
-        <div className="apropos-title-line"></div>
+        <div className="section-header left-align">
+          <h2 className="section-title">À PROPOS DE NOUS</h2>
+          <div className="section-divider"></div>
+        </div>
         <p className="apropos-desc">
           Fondée en 1976 à Casablanca, l'A.J.C.M est une organisation éducative, culturelle et de recherche,
           bénévole et indépendante, œuvrant au profit de la jeunesse et de la citoyenneté.

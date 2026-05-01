@@ -6,19 +6,19 @@ const evenements = [
   {
     day: '15', month: 'JUN', color: '#4a7c59',
     title: 'Atelier : Prise de parole en public',
-    date: '15 Juin 2024 • Rabat',
+    date: '15 Juin 2026 • Rabat',
     desc: 'Un atelier pratique pour gagner en confiance et mieux communiquer.',
   },
   {
     day: '28', month: 'JUN', color: '#C9A227',
     title: 'Forum des citoyens',
-    date: '28 Juin 2024 • Casablanca',
+    date: '28 Juin 2026 • Casablanca',
     desc: "Rencontre et échanges autour de l'engagement citoyen des jeunes.",
   },
   {
     day: '10', month: 'JUL', color: '#c0392b',
     title: 'Journée solidaire',
-    date: '10 Juillet 2024 • Marrakech',
+    date: '10 Juillet 2026 • Marrakech',
     desc: "Une journée d'action solidaire au service de la communauté.",
   },
 ];
@@ -47,9 +47,9 @@ const Annonces = () => {
   return (
     <section className="evt-section" id="annonces">
       <div className="evt-container-full">
-        <div className="section-header" style={{ textAlign: 'center', marginBottom: '40px' }}>
+        <div className="section-header center-align">
           <h2 className="section-title">ANNONCES & PROCHAINS ÉVÉNEMENTS</h2>
-          <div className="section-divider" style={{ margin: '15px auto 0' }}></div>
+          <div className="section-divider"></div>
         </div>
         
         <div className="annonces-grid">
