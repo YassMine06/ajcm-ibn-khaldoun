@@ -30,8 +30,8 @@ const Header = () => {
           <br/>
 
           <div className="hero-buttons">
-            <a href="#projets" className="btn-primary-hero">DÉCOUVRIR NOS ACTIONS</a>
-            <a href="#rejoindre" className="btn-secondary-hero">NOUS REJOINDRE</a>
+            <a href="#evenements" className="btn-primary-hero">DÉCOUVRIR NOS ÉVÉNEMENTS</a>
+            <a href="/inscription" className="btn-secondary-hero">NOUS REJOINDRE</a>
           </div>
         </div>
       </div>

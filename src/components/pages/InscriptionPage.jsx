@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Navbar from '../Navbar';
+import Footer from '../Footer';
 import './InscriptionPage.css';
 
 const InscriptionPage = () => {

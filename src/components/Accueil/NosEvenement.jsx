@@ -2,60 +2,45 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './NosEvenement.css';
 
-const evenementsRecents = [
-  {
-    folder: 'مهرجان الانشودة',
-    title: "Festival de l'Anashid",
-    desc: "Festival dédié à l'art de l'Anashid islamique, animé par des formateurs nationaux.",
-    tag: 'Culture', color: '#4a7c59',
-  },
-  {
-    folder: 'مخيم إيموزار',
-    title: 'Camp Imouzzer',
-    desc: "Colonie de vacances estivale pour les jeunes dans la région d'Imouzzer.",
-    tag: 'Jeunesse', color: '#C9A227',
-  },
-  {
-    folder: 'الجامعة لصيفية للشباب',
-    title: "Université d'Été de la Jeunesse",
-    desc: "Programme estival de formation et d'échange pour les jeunes militants associatifs.",
-    tag: 'Formation', color: '#b03a2e',
-  },
-  {
-    folder: 'masterclass',
-    title: 'Masterclass',
-    desc: "Sessions de formation intensive animées par des experts dans différents domaines.",
-    tag: 'Formation', color: '#b03a2e',
-  },
-];
+import { eventsData } from '../../assets/eventsData';
+import { categoriesData } from '../../assets/categoriesData';
+
+const evenementsRecents = eventsData.slice(0, 4);
 
 const NosEvenements = () => (
-  <section className="projets-section" id="projets">
-    <div className="projets-container">
+  <section className="evenements-section" id="evenements">
+    <div className="evenements-container">
       <div className="section-header center-align">
         <h2 className="section-title">NOS ÉVÉNEMENTS RÉCENTS</h2>
         <div className="section-divider"></div>
       </div>
-      <div className="projets-grid">
-        {evenementsRecents.map((evt) => (
-          <div className="projet-card" key={evt.folder}>
-            <div className="projet-img-wrap">
+      <div className="evenements-grid">
+        {evenementsRecents.map((evt) => {
+          const catInfo = categoriesData.find(c => c.id === evt.categoryId) || categoriesData[categoriesData.length - 1];
+          return (
+          <Link to={`/evenements/${encodeURIComponent(evt.folder)}`} className="evenement-card" key={evt.folder} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className="evenement-img-wrap">
               <img
                 src={`/Evenements/${encodeURIComponent(evt.folder)}/poster.jpg`}
                 alt={evt.title}
                 onError={(e) => { e.target.src = '/logo_ajcm.svg'; }}
               />
-              <span className="evt-tag-badge" style={{ background: evt.color }}>{evt.tag}</span>
+              <span className="evt-tag-badge" style={{ background: catInfo.color }}>{catInfo.name}</span>
             </div>
-            <div className="projet-body">
-              <h3 className="projet-title">{evt.title}</h3>
-              <p className="projet-desc">{evt.desc}</p>
-              <Link to="/evenements" className="projet-link">
-                VOIR TOUS LES ÉVÉNEMENTS →
-              </Link>
+            <div className="evenement-body">
+              <h3 className="evenement-title">{evt.title}</h3>
+              <p className="evenement-desc">{evt.desc}</p>
+              <div className="evenement-link" style={{ marginTop: 'auto' }}>
+                EN SAVOIR PLUS →
+              </div>
             </div>
-          </div>
-        ))}
+          </Link>
+        )})}
+      </div>
+      <div style={{ textAlign: 'center', marginTop: '40px' }}>
+        <Link to="/evenements" className="btn-primary-hero" style={{ display: 'inline-block' }}>
+          VOIR TOUS LES ÉVÉNEMENTS
+        </Link>
       </div>
     </div>
   </section>
