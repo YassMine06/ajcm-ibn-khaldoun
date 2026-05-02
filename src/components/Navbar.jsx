@@ -9,7 +9,7 @@ const Navbar = () => {
   const location = useLocation();
 
   // Pages that start with a dark hero background at the top
-  const isDarkHeroPage = location.pathname === '/' || location.pathname === '/evenements' || location.pathname === '/evenements/' || location.pathname === '/description' || location.pathname === '/annonces' || location.pathname === '/annonces/';
+  const isDarkHeroPage = location.pathname === '/' || location.pathname === '/evenements' || location.pathname === '/evenements/' || location.pathname === '/description' || location.pathname === '/annonces' || location.pathname === '/annonces/' || location.pathname === '/calendrier' || location.pathname === '/calendrier/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +25,7 @@ const Navbar = () => {
     { name: 'Description',  href: '/description' },
     { name: 'Annonces',     href: '/annonces' },
     { name: 'Événements',   href: '/evenements' },
-    { name: 'Calendrier',   href: '/#calendrier' },
+    { name: 'Calendrier',   href: '/calendrier' },
     { name: 'Contact',      href: '/#contact' },
   ];
 
