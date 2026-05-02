@@ -148,14 +148,13 @@
   font-family: 'Inter', sans-serif;
   font-size: 1.3rem;
   font-weight: 400;
-  max-width: 650px;
+  max-width: 900px;
   margin: 0 auto;
   opacity: 0;
   line-height: 1.6;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   animation: fadeInUp 0.8s ease 0.4s forwards;
 }
-
 /* =============================================
    2. HISTORY SECTION
 ============================================= */
@@ -285,6 +284,7 @@
 
 .section-pillars .section-desc {
   color: #666;
+  max-width: 900px;
 }
 
 .pillars-compact-grid {
@@ -544,7 +544,7 @@
 
 /* Arabic Text side */
 .message-content {
-  padding: 3rem 3rem;
+  padding: 2rem 2.5rem;
 }
 
 .arabic-premium-text {
@@ -554,14 +554,14 @@
 }
 
 .arabic-premium-text p {
-  font-size: 1.35rem;
-  line-height: 2.2;
+  font-size: 1.25rem;
+  line-height: 1.9;
   color: #333;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .arabic-premium-text p:last-of-type {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .arabic-signature {

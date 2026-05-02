@@ -20,10 +20,14 @@ const EvenementsPage = () => {
     <div className="evenements-page page-enter">
       <Navbar />
 
-      <header className="evenements-hero">
-        <div className="evts-container">
-          <h1>Nos Événements</h1>
-          <p className="evts-subtitle">
+      <header className="desc-hero">
+        <div className="desc-hero-bg">
+          <div className="desc-hero-overlay"></div>
+        </div>
+        <div className="evts-container desc-hero-content">
+          <div className="badge-identity">Agenda AJCM</div>
+          <h1 className="animate-title">Nos Événements</h1>
+          <p className="desc-subtitle animate-subtitle">
             Découvrez les {allEvenements.length} événements organisés par l'A.J.C.M.
           </p>
         </div>
@@ -47,6 +51,10 @@ const EvenementsPage = () => {
 
       <main className="evts-main">
         <div className="evts-container">
+          <div className="section-header center-align" style={{ marginBottom: '3rem' }}>
+            <h2>Tous nos événements</h2>
+            <div className="section-divider"></div>
+          </div>
           <div className="evts-grid">
             {filtered.map((evt) => {
               const catInfo = categoriesData.find(c => c.id === evt.categoryId) || categoriesData[categoriesData.length - 1];

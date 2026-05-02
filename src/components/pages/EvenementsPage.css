@@ -9,24 +9,87 @@
   padding: 0 2rem;
 }
 
-/* ── Hero ── */
-.evenements-hero {
-  background: linear-gradient(135deg, #2e513a 0%, #4a7c59 100%);
+/* ── Hero Premium ── */
+.desc-hero {
+  position: relative;
+  padding: 12rem 0 8rem;
   color: white;
-  padding: 8rem 0 5rem;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.evenements-hero h1 {
-  font-size: 3.5rem;
+.desc-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2e513a 0%, #4a7c59 50%, #1c3324 100%);
+  z-index: 0;
+}
+
+.desc-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 20% 30%, rgba(201, 162, 39, 0.15) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
+  z-index: 1;
+}
+
+.desc-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.badge-identity {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-title {
+  font-size: 4rem;
   font-weight: 800;
-  margin-bottom: 1rem;
-  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1.5px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.2s forwards;
 }
 
-.evts-subtitle {
-  font-size: 1.2rem;
-  opacity: 0.9;
+.animate-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  max-width: 900px;
+  margin: 0 auto;
+  opacity: 0;
+  line-height: 1.6;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.8s ease 0.4s forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ── Filter Bar ── */
@@ -65,9 +128,37 @@
 }
 
 .filter-btn.active {
-  background: #4a7c59;
-  border-color: #4a7c59;
+  background: #2e513a;
+  border-color: #2e513a;
   color: white;
+  box-shadow: 0 4px 15px rgba(46, 81, 58, 0.3);
+}
+
+/* ── Section Header ── */
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-header.center-align {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2e513a;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.section-divider {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #C9A227, #f3ca4e);
+  border-radius: 2px;
 }
 
 /* ── Grid ── */
@@ -81,20 +172,39 @@
   gap: 28px;
 }
 
-/* ── Card ── */
 .evt-card {
   background: white;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(0,0,0,0.02);
+  position: relative;
+}
+
+.evt-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #4a7c59, #C9A227);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: 10;
 }
 
 .evt-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.13);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(74, 124, 89, 0.1);
+}
+
+.evt-card:hover::before {
+  transform: scaleX(1);
 }
 
 .evt-card-img-wrap {
@@ -159,11 +269,14 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .evenements-hero h1 { font-size: 2.5rem; }
+  .desc-hero { padding: 10rem 0 6rem; }
+  .animate-title { font-size: 2.8rem; }
   .evts-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+  .section-header h2 { font-size: 2rem; }
 }
 
 @media (max-width: 480px) {
+  .animate-title { font-size: 2.2rem; }
   .evts-main { padding: 2rem 0 4rem; }
   .evts-grid { grid-template-columns: 1fr; }
 }
