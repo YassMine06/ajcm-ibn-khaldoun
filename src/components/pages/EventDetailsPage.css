@@ -512,6 +512,41 @@
   height: 100%;
   object-fit: contain;
   background-color: #000;
+  cursor: pointer;
+}
+
+.volume-toggle-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s, transform 0.2s;
+  padding: 6px;
+}
+
+.volume-toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+  transform: scale(1.05);
+}
+
+.volume-toggle-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+[dir="rtl"] .volume-toggle-btn {
+  right: auto;
+  left: 16px;
 }
 
 /* Sub Events Tabs */

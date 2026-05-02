@@ -15,6 +15,7 @@ const EventDetailsPage = () => {
   const [copied, setCopied] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeSubEventIndex, setActiveSubEventIndex] = useState(-1);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     // Scroll to top when loading this page
@@ -92,13 +93,46 @@ const EventDetailsPage = () => {
     
     if (isVideo) {
       return (
-        <video 
-          key={src}
-          src={src} 
-          controls 
-          className="media-item-video"
-          onError={(e) => { e.target.style.display = 'none'; }}
-        />
+        <>
+          <video 
+            key={src}
+            src={src} 
+            autoPlay
+            muted={isMuted}
+            loop
+            playsInline
+            className="media-item-video"
+            onClick={(e) => {
+              if (e.target.paused) {
+                e.target.play();
+              } else {
+                e.target.pause();
+              }
+            }}
+            onError={(e) => { e.target.style.display = 'none'; }}
+          />
+          <button 
+            className="volume-toggle-btn" 
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsMuted(!isMuted);
+            }}
+            aria-label={isMuted ? "Activer le son" : "Désactiver le son"}
+          >
+            {isMuted ? (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+            )}
+          </button>
+        </>
       );
     }
     
@@ -275,7 +309,7 @@ const EventDetailsPage = () => {
           <div className="insta-right-footer">
             <div className="insta-actions">
               <div className="action-icons-left">
-                <button className={`action-btn ${isLiked ? 'liked' : ''}`} onClick={handleLike} aria-label="Like">
+                {/* <button className={`action-btn ${isLiked ? 'liked' : ''}`} onClick={handleLike} aria-label="Like">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     {isLiked ? (
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -283,7 +317,7 @@ const EventDetailsPage = () => {
                       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                     )}
                   </svg>
-                </button>
+                </button> */}
                 {/* <button className="action-btn" aria-label="Comment">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
