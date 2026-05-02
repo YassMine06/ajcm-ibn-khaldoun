@@ -1,8 +1,12 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const annoncesDir = path.join(__dirname, 'ajcm_finale', 'public', 'Annonces');
-const outputFilePath = path.join(__dirname, 'ajcm_finale', 'src', 'assets', 'annoncesData.js');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const annoncesDir = path.join(__dirname, 'public', 'Annonces');
+const outputFilePath = path.join(__dirname, 'src', 'assets', 'annoncesData.js');
 
 try {
   const items = fs.readdirSync(annoncesDir);
@@ -41,7 +45,7 @@ try {
     }
   });
 
-  // Sort by ID descending (assuming numeric IDs mean chronological order)
+  // Sort by ID descending (newest first)
   annonces.sort((a, b) => {
     const numA = parseInt(a.id, 10);
     const numB = parseInt(b.id, 10);

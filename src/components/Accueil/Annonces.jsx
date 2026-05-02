@@ -1,83 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Annonces.css';
-
-const evenements = [
-  {
-    day: '15', month: 'JUN', color: '#4a7c59',
-    title: 'Atelier : Prise de parole en public',
-    date: '15 Juin 2026 • Rabat',
-    desc: 'Un atelier pratique pour gagner en confiance et mieux communiquer.',
-  },
-  {
-    day: '28', month: 'JUN', color: '#C9A227',
-    title: 'Forum des citoyens',
-    date: '28 Juin 2026 • Casablanca',
-    desc: "Rencontre et échanges autour de l'engagement citoyen des jeunes.",
-  },
-  {
-    day: '10', month: 'JUL', color: '#c0392b',
-    title: 'Journée solidaire',
-    date: '10 Juillet 2026 • Marrakech',
-    desc: "Une journée d'action solidaire au service de la communauté.",
-  },
-];
-
-const testimonials = [
-  {
-    text: "Grâce à A.J.C.M, j'ai découvert ma passion pour l'entrepreneuriat et j'ai lancé mon projet. Merci pour votre soutien !",
-    author: '— Salma Benaïli',
-    role: 'Entrepreneuse & membre',
-  },
-  {
-    text: "Cette association m'a permis de m'engager concrètement dans ma communauté. Une expérience transformatrice !",
-    author: '— Youssef El Amrani',
-    role: 'Bénévole & étudiant',
-  },
-  {
-    text: "Les formations en leadership ont changé ma façon de voir les choses. Je suis fière de faire partie de cette famille.",
-    author: '— Fatima Zahra',
-    role: 'Membre active',
-  },
-];
+import { annoncesData } from '../../assets/annoncesData';
 
 const Annonces = () => {
-  const [slide, setSlide] = useState(0);
+  // Prends les 5 dernières annonces pour la galerie déroulante
+  const recentAnnonces = annoncesData.slice(0, 5);
+  // On quadruple la liste pour que le carrousel infini remplisse bien l'écran, même sur de très grands écrans
+  const infiniteAnnonces = [...recentAnnonces, ...recentAnnonces, ...recentAnnonces, ...recentAnnonces];
 
   return (
     <section className="evt-section" id="annonces">
       <div className="evt-container-full">
         <div className="section-header center-align">
-          <h2 className="section-title">ANNONCES & PROCHAINS ÉVÉNEMENTS</h2>
+          <h2 className="section-title">NOS DERNIÈRES ANNONCES</h2>
           <div className="section-divider"></div>
         </div>
         
-        <div className="annonces-grid">
-          {evenements.map((e) => (
-            <div className="annonce-card" key={e.title}>
-              <div className="annonce-date-ribbon" style={{ background: e.color }}>
-                <span className="annonce-day">{e.day}</span>
-                <span className="annonce-month">{e.month}</span>
-              </div>
-              <div className="annonce-content">
-                <h4 className="annonce-title">{e.title}</h4>
-                <div className="annonce-meta">
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg>
-                  {e.date}
+        <div className="annonces-scroller-container">
+          <div className="annonces-scroller-track">
+            {/* Boucle sur les annonces multipliées pour l'effet infini */}
+            {infiniteAnnonces.map((annonce, index) => (
+              <Link to="/annonces" className="scroller-item" key={`${annonce.id}-${index}`}>
+                <div className="scroller-img-wrap">
+                  <img src={`/${annonce.image}`} alt={`Annonce ${annonce.id}`} loading="lazy" />
+                  <div className="scroller-overlay">
+                    <span className="scroller-view-text">VOIR</span>
+                  </div>
                 </div>
-                <p className="annonce-desc">{e.desc}</p>
-                <div className="annonce-footer">
-                  <Link to="/inscription?tab=evenement" className="btn-inscrire-card">S'inscrire à l'événement</Link>
-                </div>
-              </div>
-            </div>
-          ))}
+              </Link>
+            ))}
+          </div>
         </div>
         
-        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
           <Link to="/annonces" className="btn-agenda">VOIR TOUTES LES ANNONCES →</Link>
         </div>
       </div>
