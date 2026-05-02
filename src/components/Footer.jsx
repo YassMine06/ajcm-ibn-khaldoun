@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
 
         {/* Quick links */}
-        <div className="footer-col">
+        {/* <div className="footer-col">
           <h4 className="footer-heading">LIENS RAPIDES</h4>
           <ul className="footer-list links">
             <li><a href="/">Accueil</a></li>
@@ -45,7 +45,7 @@ const Footer = () => {
             <li><a href="/calendrier">Calendrier</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Newsletter */}
         {/* <div className="footer-col">

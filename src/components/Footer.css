@@ -1,7 +1,7 @@
 /* ── Footer ── */
 .footer {
   background: #0f1c13; /* Plus sombre, plus premium */
-  padding: 64px 60px 0;
+  padding: 40px 40px 0;
   color: rgba(255,255,255,0.8);
   border-top: 4px solid #C9A227; /* Ligne dorée d'accentuation en haut */
 }
@@ -11,8 +11,8 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr; /* 3 colonnes puisqu'on a enlevé la newsletter */
-  gap: 60px;
-  padding-bottom: 48px;
+  gap: 32px;
+  padding-bottom: 24px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -30,15 +30,15 @@
 }
 
 .footer-logo img {
-  width: 58px;
-  height: 58px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
 }
 
 .footer-logo-title {
   display: block;
   font-family: 'Outfit', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #fff;
   letter-spacing: 1px;
@@ -62,8 +62,8 @@
 }
 
 .social-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
@@ -88,12 +88,12 @@
 /* Other columns */
 .footer-heading {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #fff;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   position: relative;
   display: inline-block;
 }
@@ -113,7 +113,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
   padding: 0;
 }
 
@@ -190,7 +190,7 @@
 .footer-bottom {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 16px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -224,7 +224,7 @@
 }
 
 @media (max-width: 600px) {
-  .footer { padding: 48px 24px 0; }
-  .footer-main { grid-template-columns: 1fr; gap: 32px; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .footer { padding: 32px 20px 0; }
+  .footer-main { grid-template-columns: 1fr; gap: 24px; padding-bottom: 24px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
