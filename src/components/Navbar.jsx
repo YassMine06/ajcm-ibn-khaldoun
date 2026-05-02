@@ -9,7 +9,7 @@ const Navbar = () => {
   const location = useLocation();
 
   // Pages that start with a dark hero background at the top
-  const isDarkHeroPage = location.pathname === '/' || location.pathname === '/evenements' || location.pathname === '/evenements/' || location.pathname === '/description' || location.pathname === '/annonces' || location.pathname === '/annonces/' || location.pathname === '/calendrier' || location.pathname === '/calendrier/';
+  const isDarkHeroPage = location.pathname === '/' || location.pathname === '/evenements' || location.pathname === '/evenements/' || location.pathname === '/description' || location.pathname === '/annonces' || location.pathname === '/annonces/' || location.pathname === '/calendrier' || location.pathname === '/calendrier/' || location.pathname === '/contact' || location.pathname === '/contact/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +26,7 @@ const Navbar = () => {
     { name: 'Annonces',     href: '/annonces' },
     { name: 'Événements',   href: '/evenements' },
     { name: 'Calendrier',   href: '/calendrier' },
-    { name: 'Contact',      href: '/#contact' },
+    { name: 'Contact',      href: '/contact' },
   ];
 
   // Force 'scrolled' styling (dark text, white background) if we are not on a dark hero page

@@ -18,9 +18,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer-socials">
-            <a href="#fb" aria-label="Facebook" className="social-icon">f</a>
-            <a href="#ig" aria-label="Instagram" className="social-icon">ig</a>
-            <a href="#li" aria-label="LinkedIn" className="social-icon">in</a>
+            <a href="https://web.facebook.com/profile.php?id=61572668484022" aria-label="Facebook" className="social-icon" target="_blank" rel="noopener noreferrer">f</a>
+            <a href="https://www.instagram.com/ajcm_mohammedia" aria-label="Instagram" className="social-icon" target="_blank" rel="noopener noreferrer">ig</a>
+            {/* <a href="#li" aria-label="LinkedIn" className="social-icon">in</a> */}
           </div>
         </div>
 
@@ -28,8 +28,8 @@ const Footer = () => {
         <div className="footer-col">
           <h4 className="footer-heading">CONTACTEZ-NOUS</h4>
           <ul className="footer-list">
-            <li>✉ contact@ajcm.ma</li>
-            <li>📞 +212 6 12 34 56 78</li>
+            <li>✉ ajcmmohammedia@gmail.com</li>
+            <li>📞 0667015703 - 0773275830</li>
             <li>📍 Mohammedia, Maroc</li>
           </ul>
         </div>
@@ -41,8 +41,9 @@ const Footer = () => {
             <li><a href="/">Accueil</a></li>
             <li><a href="/description">Description</a></li>
             <li><a href="/evenements">Événements</a></li>
-            <li><a href="#actions">Nos actions</a></li>
-            <li><a href="#impact">Notre Impact</a></li>
+            <li><a href="/annonces">Annonces</a></li>
+            <li><a href="/calendrier">Calendrier</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
 

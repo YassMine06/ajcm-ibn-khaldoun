@@ -8,6 +8,7 @@ import EventDetailsPage from './components/pages/EventDetailsPage';
 import AnnoncesPage from './components/pages/AnnoncesPage';
 import InscriptionPage from './components/pages/InscriptionPage';
 import CalendrierPage from './components/pages/CalendrierPage';
+import ContactPage from './components/pages/ContactPage';
 import './App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/evenements/:id" element={<EventDetailsPage />} />
           <Route path="/annonces" element={<AnnoncesPage />} />
           <Route path="/calendrier" element={<CalendrierPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/inscription" element={<InscriptionPage />} />
         </Routes>
       </div>
