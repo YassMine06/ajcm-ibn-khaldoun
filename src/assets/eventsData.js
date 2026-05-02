@@ -134,23 +134,23 @@ export const eventsData = [
         "name": "الهيكلة الادارية",
         "folder": "الهيكلة الادارية",
         "media": [
-          "ajcm_mohammedia_1757754257_3720634829294868698_71842801391_5.jpg",
-          "ajcm_mohammedia_1757754257_3720634829378792882_71842801391_3.jpg",
-          "ajcm_mohammedia_1757754257_3720634829412340401_71842801391_4.jpg",
-          "ajcm_mohammedia_1757754257_3720634829471030811_71842801391_8.jpg",
-          "ajcm_mohammedia_1757754257_3720634829529799399_71842801391_2.jpg",
-          "ajcm_mohammedia_1757754257_3720634830007907437_71842801391_9.jpg",
-          "ajcm_mohammedia_1757754257_3720634830024703365_71842801391_6.jpg",
-          "ajcm_mohammedia_1757754257_3720634830452501660_71842801391_7.jpg",
-          "ajcm_mohammedia_1757754257_3720634830704189733_71842801391_1.jpg",
-          "ajcm_mohammedia_1757805353_3721063452921042256_71842801391_5.jpg",
-          "ajcm_mohammedia_1757805353_3721063453038479525_71842801391_2.jpg",
-          "ajcm_mohammedia_1757805353_3721063453206251885_71842801391_1.jpg",
-          "ajcm_mohammedia_1757805353_3721063453734736059_71842801391_3.jpg",
-          "ajcm_mohammedia_1757805353_3721063453768329250_71842801391_7.jpg",
-          "ajcm_mohammedia_1757805353_3721063453936105718_71842801391_8.jpg",
-          "ajcm_mohammedia_1757805353_3721063454246447204_71842801391_6.jpg",
-          "ajcm_mohammedia_1757805353_3721063454892386454_71842801391_4.jpg"
+          "1.jpg",
+          "2.jpg",
+          "3.jpg",
+          "4.jpg",
+          "5.jpg",
+          "6.jpg",
+          "7.jpg",
+          "8.jpg",
+          "9.jpg",
+          "10.jpg",
+          "11.jpg",
+          "12.jpg",
+          "13.jpg",
+          "14.jpg",
+          "15.jpg",
+          "16.jpg",
+          "17.jpg"
         ]
       }
     ]
@@ -192,43 +192,43 @@ export const eventsData = [
         "name": "فعالية 1",
         "folder": "فعالية 1",
         "media": [
-          "ajcm_mohammedia_1776113939_3874646869020537651_71842801391_1.jpg",
-          "ajcm_mohammedia_1776113939_3874646907834600554_71842801391_2.jpg",
-          "ajcm_mohammedia_1776113939_3874646908035928695_71842801391_3.jpg",
-          "ajcm_mohammedia_1776113939_3874646917313733319_71842801391_4.jpg",
-          "ajcm_mohammedia_1776113939_3874646925140320151_71842801391_5.jpg",
-          "ajcm_mohammedia_1776113939_3874646929905071314_71842801391_6.jpg",
-          "ajcm_mohammedia_1776113939_3874646934627869645_71842801391_7.jpg",
-          "ajcm_mohammedia_1776113939_3874646940491496600_71842801391_8.jpg",
-          "ajcm_mohammedia_1776113939_3874646947965748392_71842801391_9.jpg",
-          "ajcm_mohammedia_1776113939_3874646954349464503_71842801391_10.jpg",
-          "ajcm_mohammedia_1776113939_3874646959047077940_71842801391_11.jpg"
+          "1.jpg",
+          "2.jpg",
+          "3.jpg",
+          "4.jpg",
+          "5.jpg",
+          "6.jpg",
+          "7.jpg",
+          "8.jpg",
+          "9.jpg",
+          "10.jpg",
+          "11.jpg"
         ]
       },
       {
         "name": "فعالية 2",
         "folder": "فعالية 2",
         "media": [
-          "ajcm_mohammedia_1776688542_3879467132090320390_71842801391.jpg",
-          "ajcm_mohammedia_1777128534_3883158044196741145_71842801391_8.jpg",
-          "ajcm_mohammedia_1777128534_3883158044221949917_71842801391_6.jpg",
-          "ajcm_mohammedia_1777128534_3883158044263879862_71842801391_4.jpg",
-          "ajcm_mohammedia_1777128534_3883158044314178296_71842801391_1.jpg",
-          "ajcm_mohammedia_1777128534_3883158044540731184_71842801391_2.jpg",
-          "ajcm_mohammedia_1777128534_3883158044549082900_71842801391_3.jpg",
-          "ajcm_mohammedia_1777128534_3883158044716849385_71842801391_7.jpg",
-          "ajcm_mohammedia_1777128534_3883158045916415963_71842801391_5.jpg"
+          "1.jpg",
+          "2.jpg",
+          "3.jpg",
+          "4.jpg",
+          "5.jpg",
+          "6.jpg",
+          "7.jpg",
+          "8.jpg",
+          "9.jpg"
         ]
       },
       {
         "name": "فعالية 3",
         "folder": "فعالية 3",
         "media": [
-          "ajcm_mohammedia_1777212049_3883858524061363343_71842801391_3.jpg",
-          "ajcm_mohammedia_1777212049_3883858575106026900_71842801391_10.jpg",
-          "ajcm_mohammedia_1777212049_3883858579744926177_71842801391_11.jpg",
-          "ajcm_mohammedia_1777212049_3883858585465919532_71842801391_12.jpg",
-          "ajcm_mohammedia_1777212049_3883858602637456351_71842801391_15.jpg"
+          "1.jpg",
+          "2.jpg",
+          "3.jpg",
+          "4.jpg",
+          "5.jpg"
         ]
       }
     ]
@@ -434,10 +434,10 @@ export const eventsData = [
       "6.jpg",
       "7.jpg",
       "8.jpg",
-      "عين و حكاية فلم 7447.jpeg",
-      "عين و حكاية فلم 7447(1).jpeg",
-      "عين و حكاية.jpeg",
-      "عين و حكاية(1).jpeg"
+      "9.jpg",
+      "10.jpg",
+      "11.jpg",
+      "12.jpg"
     ]
   },
   {
@@ -452,14 +452,14 @@ export const eventsData = [
     "categoryId": "cat-5",
     "media": [
       "poster.jpg",
-      "gorara_arts_cultures_1773693959_3854345316447328154_9284248502.mp4",
-      "حفل حناء _رسم حنتك_.jpeg",
-      "حفل حناء _رسم حنتك_(1).jpeg"
+      "1.jpg",
+      "2.jpg",
+      "gorara_arts_cultures_1773693959_3854345316447328154_9284248502.mp4"
     ]
   },
   {
-    "folder": "حصة في الشطرنج",
-    "title": "Session d'Échecs",
+    "folder": "حصة في الشطرنج 1",
+    "title": "Session d'Échecs 1",
     "desc": "Initiation et entraînement aux échecs pour les jeunes membres.",
     "date": "",
     "membres": "عبد الكريم مخلص",
@@ -469,13 +469,34 @@ export const eventsData = [
     "categoryId": "cat-6",
     "media": [
       "poster.jpg",
-      "ajcm_mohammedia_1772729929_3846259867716031885_71842801391_7.jpg",
-      "ajcm_mohammedia_1772729929_3846259867892222745_71842801391_6.jpg",
-      "ajcm_mohammedia_1772729929_3846259868034795731_71842801391_3.jpg",
-      "ajcm_mohammedia_1772729929_3846259868169062370_71842801391_5.jpg",
-      "ajcm_mohammedia_1772729929_3846259868227795293_71842801391_4.jpg",
-      "ajcm_mohammedia_1772729929_3846259868244539553_71842801391_8.jpg",
-      "ajcm_mohammedia_1772729929_3846259868747845011_71842801391_2.jpg"
+      "1.jpg",
+      "2.jpg",
+      "3.jpg",
+      "4.jpg",
+      "5.jpg",
+      "6.jpg",
+      "7.jpg"
+    ]
+  },
+  {
+    "folder": "حصة في الشطرنج 2",
+    "title": "Session d'Échecs 2",
+    "desc": "Initiation et entraînement aux échecs pour les jeunes membres (Session 2).",
+    "date": "",
+    "membres": "عبد الكريم مخلص",
+    "lieu": "دار الشباب ابن خلدون",
+    "description_ar": "حصة تدريبية ثانية في الشطرنج لفائدة الأطفال والشباب.",
+    "description_fr": "Deuxième séance d'entraînement aux échecs pour les enfants et les jeunes.",
+    "categoryId": "cat-6",
+    "media": [
+      "poster.jpg",
+      "1.jpg",
+      "2.jpg",
+      "3.jpg",
+      "4.jpg",
+      "5.jpg",
+      "6.jpg",
+      "7.jpg"
     ]
   },
   {

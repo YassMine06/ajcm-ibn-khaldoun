@@ -128,6 +128,38 @@ const EventDetailsPage = () => {
           &#10095;
         </Link>
       )}
+
+      <div className="event-navigation-top">
+        <div className="mobile-only-nav">
+          {prevEvent ? (
+            <Link to={`/evenements/${encodeURIComponent(prevEvent.folder)}`} className="event-nav-btn">
+              &#10094; <span>Précédent</span>
+            </Link>
+          ) : (
+            <div className="event-nav-placeholder" />
+          )}
+        </div>
+
+        <Link to="/evenements" className="back-btn" style={{ margin: '0 auto' }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span className="hide-on-mobile">Tous les événements</span>
+        </Link>
+
+        <div className="mobile-only-nav">
+          {nextEvent ? (
+            <Link to={`/evenements/${encodeURIComponent(nextEvent.folder)}`} className="event-nav-btn">
+              <span>Suivant</span> &#10095;
+            </Link>
+          ) : (
+            <div className="event-nav-placeholder" />
+          )}
+        </div>
+      </div>
       
       <div className="event-details-container">
         {/* Media */}
@@ -210,7 +242,7 @@ const EventDetailsPage = () => {
               )}
 
               <div className="insta-caption">
-                <strong>ajcm_maroc</strong> {event.title}
+                <strong>ajcm_mohammedia</strong> {event.title}
               </div>
               
               {(event.description_fr || event.desc) && (
@@ -252,11 +284,11 @@ const EventDetailsPage = () => {
                     )}
                   </svg>
                 </button>
-                <button className="action-btn" aria-label="Comment">
+                {/* <button className="action-btn" aria-label="Comment">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                   </svg>
-                </button>
+                </button> */}
                 <button className="action-btn" onClick={handleShare} aria-label="Share">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -266,11 +298,11 @@ const EventDetailsPage = () => {
                 {copied && <span className="copy-feedback">Lien copié !</span>}
               </div>
               <div className="action-icons-right">
-                <button className="action-btn" aria-label="Save">
+                {/* <button className="action-btn" aria-label="Save">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                   </svg>
-                </button>
+                </button> */}
               </div>
             </div>
             
@@ -282,38 +314,6 @@ const EventDetailsPage = () => {
               IL Y A QUELQUES JOURS
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="event-navigation-footer">
-        <div className="mobile-only-nav">
-          {prevEvent ? (
-            <Link to={`/evenements/${encodeURIComponent(prevEvent.folder)}`} className="event-nav-btn">
-              &#10094; <span>Précédent</span>
-            </Link>
-          ) : (
-            <div className="event-nav-placeholder" />
-          )}
-        </div>
-
-        <Link to="/evenements" className="back-btn" style={{ margin: '0 auto' }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="3" width="7" height="7"></rect>
-            <rect x="14" y="3" width="7" height="7"></rect>
-            <rect x="14" y="14" width="7" height="7"></rect>
-            <rect x="3" y="14" width="7" height="7"></rect>
-          </svg>
-          <span className="hide-on-mobile">Tous les événements</span>
-        </Link>
-
-        <div className="mobile-only-nav">
-          {nextEvent ? (
-            <Link to={`/evenements/${encodeURIComponent(nextEvent.folder)}`} className="event-nav-btn">
-              <span>Suivant</span> &#10095;
-            </Link>
-          ) : (
-            <div className="event-nav-placeholder" />
-          )}
         </div>
       </div>
 

@@ -54,7 +54,7 @@ const EvenementsPage = () => {
               <Link to={`/evenements/${encodeURIComponent(evt.folder)}`} className="evt-card" key={evt.folder} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="evt-card-img-wrap">
                   <img
-                    src={`/Evenements/${encodeURIComponent(evt.folder)}/poster.jpg`}
+                    src={`/Evenements/${encodeURIComponent(evt.folder)}/${evt.media && evt.media.length > 0 ? evt.media[0] : 'poster.jpg'}`}
                     alt={evt.title}
                     onError={(e) => { e.target.src = '/logo_ajcm.svg'; }}
                   />
