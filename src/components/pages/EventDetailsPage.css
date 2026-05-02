@@ -61,7 +61,7 @@
 .insta-media {
   width: 100%;
   aspect-ratio: 4/5; /* Format classique portrait Insta */
-  background-color: #fafafa;
+  background-color: #000; /* Fond noir pour encadrer l'image */
   position: relative;
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@
 .insta-media img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Cover pour remplir le cadre */
+  object-fit: contain; /* Contain pour ne pas couper l'image */
 }
 
 .insta-category-badge {
