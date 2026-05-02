@@ -1,12 +1,13 @@
 .event-details-page {
   background-color: #f8f9fa;
   min-height: 100vh;
+  padding-top: 90px;
   padding-bottom: 60px;
 }
 
 .event-details-container {
   max-width: 600px; /* Taille typique d'un post Insta sur desktop */
-  margin: 120px auto 40px;
+  margin: 40px auto 40px;
   background: #fff;
   border: 1px solid #dbdbdb;
   border-radius: 8px;
@@ -490,7 +491,7 @@
 
 @media (max-width: 799px) {
   .event-navigation-top {
-    margin-top: 80px;
+    margin-top: 20px;
     margin-bottom: 0;
     padding: 0 12px;
   }

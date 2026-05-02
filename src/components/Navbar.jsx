@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('Accueil');
+  const location = useLocation();
+
+  // Pages that start with a dark hero background at the top
+  const isDarkHeroPage = location.pathname === '/' || location.pathname === '/evenements' || location.pathname === '/evenements/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,12 +26,14 @@ const Navbar = () => {
     { name: 'Annonces',     href: '/#annonces' },
     { name: 'Événements',   href: '/evenements' },
     { name: 'Calendrier',   href: '/#calendrier' },
-    { name: 'Partenaires',  href: '/#partenaires' },
     { name: 'Contact',      href: '/#contact' },
   ];
 
+  // Force 'scrolled' styling (dark text, white background) if we are not on a dark hero page
+  const isScrolledStyle = scrolled || !isDarkHeroPage;
+
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''} ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+    <nav className={`navbar ${isScrolledStyle ? 'scrolled' : ''} ${mobileMenuOpen ? 'mobile-open' : ''}`}>
       <div className="nav-container">
 
         {/* ── Logo ── */}
