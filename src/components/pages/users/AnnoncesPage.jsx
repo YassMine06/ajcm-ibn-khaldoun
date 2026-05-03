@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
+import Navbar from '../../Navbar';
+import Footer from '../../Footer';
 import './AnnoncesPage.css';
-import { annoncesData } from '../../assets/annoncesData';
+import { annoncesData } from '../../../assets/annoncesData';
 
 const AnnoncesPage = () => {
   const [selectedAnnonce, setSelectedAnnonce] = useState(null);

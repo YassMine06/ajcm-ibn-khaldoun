@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './APropos.css';
 
 const MissionIcon = () => (
@@ -57,7 +58,7 @@ const APropos = () => (
           Devenue association nationale en 2019, elle déploie son action autour de quatre piliers :
           Éducation, Action Sociale, Formation et Rayonnement Culturel.
         </p>
-        <a href="/description" className="btn-savoir-plus">EN SAVOIR PLUS</a>
+        <Link to="/description" className="btn-savoir-plus">EN SAVOIR PLUS</Link>
       </div>
 
       <div className="apropos-image">

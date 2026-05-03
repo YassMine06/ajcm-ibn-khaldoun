@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
+import Navbar from '../../Navbar';
+import Footer from '../../Footer';
 import './EvenementsPage.css';
 
-import { eventsData as allEvenements } from '../../assets/eventsData';
-import { categoriesData } from '../../assets/categoriesData';
+import { eventsData as allEvenements } from '../../../assets/eventsData';
+import { categoriesData } from '../../../assets/categoriesData';
 
 const allCategories = [{ id: 'tous', name: 'Tous' }, ...categoriesData];
 

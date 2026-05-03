@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../Navbar';
 import NotreImpact from './NotreImpact';
 import './Header.css';
@@ -31,7 +32,7 @@ const Header = () => {
 
           <div className="hero-buttons">
             <a href="#evenements" className="btn-primary-hero">DÉCOUVRIR NOS ÉVÉNEMENTS</a>
-            <a href="/inscription" className="btn-secondary-hero">NOUS REJOINDRE</a>
+            <Link to="/inscription" className="btn-secondary-hero">NOUS REJOINDRE</Link>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './DescriptionPage.css';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
+import Navbar from '../../Navbar';
+import Footer from '../../Footer';
 
 const pillars = [
   {

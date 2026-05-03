@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
-import { eventsData } from '../../assets/eventsData';
-import { categoriesData } from '../../assets/categoriesData';
+import Navbar from '../../Navbar';
+import Footer from '../../Footer';
+import { eventsData } from '../../../assets/eventsData';
+import { categoriesData } from '../../../assets/categoriesData';
 import './EventDetailsPage.css';
 
 const EventDetailsPage = () => {

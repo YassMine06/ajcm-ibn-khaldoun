@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../Navbar';
-import Footer from '../Footer';
-import { eventsData } from '../../assets/eventsData';
+import Navbar from '../../Navbar';
+import Footer from '../../Footer';
+import { eventsData } from '../../../assets/eventsData';
 import './CalendrierPage.css';
 
 const MONTHS_AR = {

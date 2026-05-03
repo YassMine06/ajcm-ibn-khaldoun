@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../Accueil/Header';
-import APropos from '../Accueil/APropos';
-import NosEvenements from '../Accueil/NosEvenement';
-import Annonces from '../Accueil/Annonces';
-import Partenaires from '../Accueil/Partenaires';
-import CTABanner from '../Accueil/CTABanner';
-import Footer from '../Footer';
+import Header from '../../Accueil/Header';
+import APropos from '../../Accueil/APropos';
+import NosEvenements from '../../Accueil/NosEvenement';
+import Annonces from '../../Accueil/Annonces';
+import Partenaires from '../../Accueil/Partenaires';
+import CTABanner from '../../Accueil/CTABanner';
+import Footer from '../../Footer';
 import './HomePage.css';
 
 const HomePage = () => {
