@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { User, Lock, LogIn, Shield, Leaf } from 'lucide-react';
 import loginBg from '../../assets/login-bg.png';
+import backgroundHome from '../../assets/background0.png';
+import logoAjcm from '../../assets/logo_ajcm.svg';
+import './LoginPage.css';
 
 export default function LoginPage({ onLogin }) {
   const [username, setUsername] = useState('');
@@ -24,36 +27,27 @@ export default function LoginPage({ onLogin }) {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container" style={{ '--login-bg': `url(${backgroundHome})` }}>
       {/* Left panel */}
-      <div className="login-left" style={{
-        backgroundImage: `linear-gradient(rgba(7, 31, 22, 0.8), rgba(11, 61, 43, 0.85)), url(${loginBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}>
+      <div className="login-left">
         <div className="login-left-content">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
-            <div style={{ width: '44px', height: '44px', background: 'linear-gradient(135deg, #c6a052, #b8873a)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Leaf size={22} color="white" />
+          <div className="login-header-mini">
+            <div className="login-logo-mini">
+              <img src={logoAjcm} alt="Logo AJCM" />
             </div>
-            <span style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', letterSpacing: '-0.02em' }}>AJCM Ibn Khaldoun</span>
+            <div className="nav-logo-text">
+            <span className="nav-logo-title">A.J.C.M</span>
+            <span className="nav-logo-sub">
+              ASSOCIATION JEUNESSE <br />DE LA CITOYENNETÉ MAROCAINE<br />MOHAMMEDIA IBN KHALDOUN
+            </span>
+          </div>
           </div>
           <h1>
-            Plateforme de<br /><span>gestion associative</span>
+            Plateforme de <span>gestion</span>
           </h1>
-          <p style={{ marginTop: '1.25rem' }}>
+          <p>
             Gérez vos événements, membres, partenaires et annonces depuis une interface centralisée, moderne et facile à utiliser.
           </p>
-          <div style={{ marginTop: '2.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {[
-              '✅ Gestion complète des activités et événements',
-              '👥 Espace dédié pour chaque membre',
-              '📊 Tableaux de bord et statistiques',
-              '🤖 Module IA pour la génération de contenu',
-            ].map((f, i) => (
-              <div key={i} style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>{f}</div>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -108,9 +102,8 @@ export default function LoginPage({ onLogin }) {
 
             <button
               type="submit"
-              className="btn-primary btn-block"
+              className={`btn-primary btn-block ${loading ? 'btn-loading' : ''}`}
               disabled={loading}
-              style={{ opacity: loading ? 0.7 : 1 }}
             >
               <LogIn size={18} />
               {loading ? 'Connexion en cours...' : 'Se connecter'}

@@ -1,4 +1,5 @@
 import React from 'react';
+import './RegistrationsManager.css';
 import { CheckCircle, XCircle, Clock, UserCheck } from 'lucide-react';
 import { useState } from 'react';
 

@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Navbar from '../../Navbar';
 import Footer from '../../Footer';
 import './AnnoncesPage.css';
-import { annoncesData } from '../../../assets/annoncesData';
 
 const AnnoncesPage = () => {
+  const [annonces, setAnnonces] = useState([]);
   const [selectedAnnonce, setSelectedAnnonce] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Fetch annonces from API
+    const fetchAnnonces = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/api/annonces');
+        setAnnonces(res.data);
+      } catch (err) {
+        console.error('Error fetching annonces:', err);
+      }
+    };
+    fetchAnnonces();
   }, []);
 
   // Prevent background scrolling when modal is open
@@ -52,7 +63,7 @@ const AnnoncesPage = () => {
           </div>
           
           <div className="annonces-masonry-grid">
-            {annoncesData.map((annonce) => (
+            {annonces.map((annonce) => (
               <div 
                 key={annonce.id} 
                 className="annonce-grid-item"
@@ -60,6 +71,11 @@ const AnnoncesPage = () => {
               >
                 <div className="annonce-img-wrap">
                   <img src={`/${annonce.image}`} alt={`Annonce ${annonce.id}`} loading="lazy" />
+                  {annonce.type && (
+                    <div className={`annonce-type-badge ${annonce.type}`}>
+                      {annonce.type === 'evenement' ? 'Événement' : 'Actualité'}
+                    </div>
+                  )}
                   <div className="annonce-hover-overlay">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="11" cy="11" r="8"></circle>
@@ -69,9 +85,11 @@ const AnnoncesPage = () => {
                     </svg>
                   </div>
                 </div>
-                {annonce.text && (
+                {(annonce.title || annonce.text || annonce.date) && (
                   <div className="annonce-text-preview">
-                    {annonce.text.substring(0, 60)}...
+                    {annonce.title && <h3 className="annonce-card-title">{annonce.title}</h3>}
+                    {annonce.date && <div className="annonce-card-date">{annonce.date}</div>}
+                    {annonce.text && <p>{annonce.text.substring(0, 60)}...</p>}
                   </div>
                 )}
               </div>
@@ -90,17 +108,35 @@ const AnnoncesPage = () => {
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
-            <div className={`modal-body ${selectedAnnonce.text ? 'has-text' : ''}`}>
+            <div className={`modal-body has-text`}>
               <div className="modal-img-container">
                 <img src={`/${selectedAnnonce.image}`} alt={`Annonce ${selectedAnnonce.id}`} />
               </div>
-              {selectedAnnonce.text && (
-                <div className="modal-text-container">
-                  <div className="modal-text-scroll">
-                    <p className="arabic-text">{selectedAnnonce.text}</p>
+              
+              <div className="modal-text-container">
+                <div className="modal-text-scroll">
+                  {selectedAnnonce.type && (
+                    <span className={`modal-badge ${selectedAnnonce.type}`}>
+                      {selectedAnnonce.type === 'evenement' ? 'Événement' : 'Actualité'}
+                    </span>
+                  )}
+                  {selectedAnnonce.title && <h2 className="modal-title">{selectedAnnonce.title}</h2>}
+                  
+                  <div className="modal-meta-info">
+                    {selectedAnnonce.date && <div><strong>Date :</strong> {selectedAnnonce.date}</div>}
+                    {selectedAnnonce.location && <div><strong>Lieu :</strong> {selectedAnnonce.location}</div>}
+                    {selectedAnnonce.guest && <div><strong>Invités :</strong> {selectedAnnonce.guest}</div>}
+                    {selectedAnnonce.type === 'evenement' && selectedAnnonce.maxParticipants && (
+                      <div><strong>Participants max :</strong> {selectedAnnonce.maxParticipants}</div>
+                    )}
                   </div>
+                  
+                  {selectedAnnonce.text && (
+                    <p className="arabic-text modal-desc">{selectedAnnonce.text}</p>
+                  )}
                 </div>
-              )}
+              </div>
+              
             </div>
           </div>
         </div>

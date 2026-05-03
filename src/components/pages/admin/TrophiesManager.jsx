@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './TrophiesManager.css';
 import { Trophy, Plus, Trash2, Edit2, Search, Medal } from 'lucide-react';
 
 const initialTrophies = [

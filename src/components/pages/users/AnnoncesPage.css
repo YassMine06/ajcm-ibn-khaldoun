@@ -92,7 +92,46 @@
   text-align: right;
   line-height: 1.6;
   border-top: 1px solid #f0f0f0;
-  background: #fafafa;
+  background: white;
+}
+
+.annonce-card-title {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.annonce-card-date {
+  font-size: 0.8rem;
+  color: #4a7c59;
+  margin-bottom: 10px;
+  font-weight: 600;
+  display: block;
+}
+
+.annonce-type-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.annonce-type-badge.actualite {
+  background: #4a7c59;
+  color: white;
+}
+
+.annonce-type-badge.evenement {
+  background: #C9A227;
+  color: white;
 }
 
 /* ── Modal / Lightbox ── */
@@ -190,12 +229,67 @@
   padding: 40px 30px;
   overflow-y: auto;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-badge {
+  display: inline-block;
+  align-self: flex-end;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.modal-badge.actualite {
+  background: #e8f5e9;
+  color: #4a7c59;
+}
+
+.modal-badge.evenement {
+  background: #fdf7e6;
+  color: #C9A227;
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  line-height: 1.3;
+  text-align: right;
+  font-family: 'Noto Sans Arabic', 'Tajawal', 'Cairo', sans-serif;
+}
+
+.modal-meta-info {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+  color: #555;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-meta-info strong {
+  color: #1a1a1a;
+}
+
+.modal-desc {
+  margin-top: 0;
+  flex: 1;
 }
 
 .arabic-text {
   font-family: 'Noto Sans Arabic', 'Tajawal', 'Cairo', sans-serif;
   font-size: 1.15rem;
-  line-height: 2;
+  line-height: 1.8;
   color: #333;
   direction: rtl;
   text-align: right;

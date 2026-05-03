@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { UserCircle, Edit3, ClipboardList, LayoutDashboard, Calendar, History, Bell, LogOut, Star } from 'lucide-react';
+import { UserCircle, Edit3, ClipboardList, LayoutDashboard, Calendar, History, Bell, LogOut } from 'lucide-react';
+import logoAjcm from '../../assets/logo_ajcm.svg';
+import './AdminLayout.css';
 
 export default function MemberLayout({ onLogout, user }) {
   return (
@@ -10,7 +12,7 @@ export default function MemberLayout({ onLogout, user }) {
         <div className="sidebar-header">
           <div className="sidebar-logo">
             <div className="sidebar-logo-icon">
-              <Star size={18} />
+              <img src={logoAjcm} alt="Logo" />
             </div>
             <div className="sidebar-logo-text">
               <span className="brand">EspaceMembre</span>

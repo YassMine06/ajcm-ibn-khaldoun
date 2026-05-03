@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './PartnersManager.css';
 import { Handshake, Plus, Trash2, Edit2, Search } from 'lucide-react';
 
 const initialPartners = [

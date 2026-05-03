@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './RegisterActivities.css';
 import { ClipboardList, CheckCircle, Clock, XCircle } from 'lucide-react';
 import axios from 'axios';
 

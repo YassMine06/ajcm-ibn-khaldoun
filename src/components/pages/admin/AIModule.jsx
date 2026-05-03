@@ -1,4 +1,5 @@
 import React from 'react';
+import './AIModule.css';
 
 export default function AIModule() {
   return (

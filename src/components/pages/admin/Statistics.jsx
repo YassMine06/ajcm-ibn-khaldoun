@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import './Statistics.css';
 import axios from 'axios';
-import { ClipboardList, Megaphone, Users, UserCheck, TrendingUp } from 'lucide-react';
+import { 
+  ClipboardList, Megaphone, Users, UserCheck, TrendingUp, 
+  Plus, Calendar, Mail, ShieldCheck, ArrowRight, BarChart 
+} from 'lucide-react';
 
 import dashPattern from '../../../assets/dash-pattern.png';
 
@@ -23,77 +27,156 @@ export default function Statistics() {
   }, []);
 
   const cards = [
-    { label: 'Activités totales', value: stats.events,       icon: <ClipboardList size={22} />, color: 'var(--green-700)', bg: 'var(--green-100)' },
-    { label: 'Annonces publiées', value: stats.annonces,    icon: <Megaphone size={22} />,     color: 'var(--gold-600)',   bg: 'var(--gold-100)'  },
-    { label: 'Membres inscrits',  value: stats.members,     icon: <Users size={22} />,         color: '#3b82f6',           bg: '#eff6ff'          },
-    { label: 'Inscriptions',      value: stats.registrations, icon: <UserCheck size={22} />,   color: '#ef4444',           bg: '#fef2f2'          },
+    { label: 'Événements', value: stats.events, icon: <Calendar size={24} />, color: 'var(--green-700)', bg: 'var(--green-100)' },
+    { label: 'Annonces',  value: stats.annonces, icon: <Megaphone size={24} />, color: 'var(--gold-600)', bg: 'var(--gold-100)' },
+    { label: 'Membres',   value: stats.members, icon: <Users size={24} />, color: 'var(--info)', bg: 'var(--info-bg)' },
+    { label: 'Inscriptions', value: stats.registrations, icon: <UserCheck size={24} />, color: 'var(--danger)', bg: 'var(--danger-bg)' },
   ];
 
   return (
-    <div>
-      <div style={{
-        backgroundImage: `linear-gradient(rgba(11, 61, 43, 0.7), rgba(7, 31, 22, 0.85)), url(${dashPattern})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: '2.5rem 2rem',
-        borderRadius: 'var(--radius-lg)',
-        color: 'white',
-        marginBottom: '2rem',
-        boxShadow: 'var(--shadow-md)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem'
-      }}>
-        <div style={{ backgroundColor: 'rgba(255,255,255,0.1)', padding: '0.75rem', borderRadius: 'var(--radius-md)', backdropFilter: 'blur(10px)' }}>
-          <TrendingUp size={32} color="var(--gold-400)" />
+    <div className="statistics-page">
+      {/* Hero Section */}
+      <div className="stats-hero" style={{ backgroundImage: `linear-gradient(rgba(11, 61, 43, 0.8), rgba(7, 31, 22, 0.9)), url(${dashPattern})` }}>
+        <div className="hero-content">
+          <div className="hero-icon">
+            <ShieldCheck size={40} color="var(--gold-400)" />
+          </div>
+          <div className="hero-text">
+            <h1>Tableau de bord</h1>
+            <p>Bienvenue sur votre espace de gestion AJCM. Voici l'état actuel de votre association.</p>
+          </div>
         </div>
-        <div>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: 800, letterSpacing: '-0.03em', margin: 0 }}>Statistiques Globales</h1>
-          <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem', marginTop: '0.2rem' }}>Vue d'ensemble de l'activité de la plateforme AJCM</p>
+        <div className="hero-badge">
+          <span className="badge badge-gold" style={{ padding: '0.5rem 1rem' }}>Saison 2026 — Actif</span>
         </div>
       </div>
 
+      {/* Primary Stats Grid */}
       <div className="stats-grid">
         {cards.map((c, i) => (
           <div className="stat-card" key={i}>
             <div className="stat-icon" style={{ backgroundColor: c.bg, color: c.color }}>{c.icon}</div>
             <div className="stat-info">
               <h3>{c.label}</h3>
-              <p style={{ color: c.color }}>{c.value}</p>
+              <p style={{ color: 'var(--gray-900)' }}>{c.value}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="table-container">
-        <div className="table-header">
-          <h2>Dernières activités</h2>
-          <span className="badge badge-gold">{recentEvents.length} affiché(s)</span>
+      <div className="dashboard-sections">
+        {/* Left Column: Recent Activity & Charts */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          
+          <div className="section-box">
+            <div className="section-header">
+              <h2><BarChart size={18} color="var(--green-700)" /> Analyse de croissance</h2>
+              <span className="text-muted text-sm">Derniers 7 jours</span>
+            </div>
+            <div className="chart-container">
+              {[40, 70, 45, 90, 65, 80, 55].map((h, i) => (
+                <div key={i} className="chart-bar" style={{ height: `${h}%` }}></div>
+              ))}
+            </div>
+          </div>
+
+          <div className="table-container" style={{ margin: 0 }}>
+            <div className="table-header">
+              <h2><ClipboardList size={18} color="var(--green-700)" /> Activités récentes</h2>
+              <button className="btn-ghost" style={{ padding: '0.3rem 0.75rem', fontSize: '0.75rem' }}>Voir tout</button>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Titre</th>
+                  <th>Date</th>
+                  <th>Lieu</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentEvents.length > 0 ? recentEvents.map((ev, i) => (
+                  <tr key={i}>
+                    <td style={{ fontWeight: 600 }}>{ev.title}</td>
+                    <td>
+                      <span className="badge badge-info">
+                        {ev.date || ev.startDate || '—'}
+                      </span>
+                    </td>
+                    <td className="text-muted text-sm">{ev.lieu || ev.location || '—'}</td>
+                    <td><span className="badge badge-success">Publié</span></td>
+                  </tr>
+                )) : (
+                  <tr><td colSpan="4" className="text-center text-muted">Aucune activité récente</td></tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Titre</th>
-              <th>Date</th>
-              <th>Lieu</th>
-              <th>Catégorie</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recentEvents.map((ev, i) => (
-              <tr key={i}>
-                <td style={{ color: 'var(--gray-300)', fontWeight: 700, fontSize: '0.75rem' }}>
-                  {String(i + 1).padStart(2, '0')}
-                </td>
-                <td style={{ fontWeight: 600, color: 'var(--gray-900)' }}>{ev.title}</td>
-                <td>{ev.date ? <span className="badge badge-info">{ev.date}</span> : <span style={{ color: 'var(--gray-300)' }}>—</span>}</td>
-                <td className="text-muted">{ev.lieu || '—'}</td>
-                <td><span className="badge badge-success">{ev.categoryId || '—'}</span></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+        {/* Right Column: Quick Actions & Feed */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          
+          <div className="section-box">
+            <div className="section-header">
+              <h2><Plus size={18} color="var(--green-700)" /> Actions Rapides</h2>
+            </div>
+            <div className="quick-actions-grid">
+              <div className="action-card">
+                <Calendar size={20} />
+                <span>Nouvel Event</span>
+              </div>
+              <div className="action-card">
+                <Megaphone size={20} />
+                <span>Publier Annonce</span>
+              </div>
+              <div className="action-card">
+                <Users size={20} />
+                <span>Gérer Membres</span>
+              </div>
+              <div className="action-card">
+                <Mail size={20} />
+                <span>Envoyer Email</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="section-box">
+            <div className="section-header">
+              <h2><TrendingUp size={18} color="var(--green-700)" /> Flux d'activité</h2>
+            </div>
+            <div className="activity-feed">
+              <div className="activity-item">
+                <div className="activity-marker green"></div>
+                <div className="activity-content">
+                  <h4>Nouvelle inscription</h4>
+                  <p>Ahmed Alami s'est inscrit à l'association.</p>
+                  <div className="activity-time">Il y a 12 minutes</div>
+                </div>
+              </div>
+              <div className="activity-item">
+                <div className="activity-marker gold"></div>
+                <div className="activity-content">
+                  <h4>Annonce publiée</h4>
+                  <p>L'annonce "Camp d'été" est maintenant en ligne.</p>
+                  <div className="activity-time">Il y a 2 heures</div>
+                </div>
+              </div>
+              <div className="activity-item">
+                <div className="activity-marker info"></div>
+                <div className="activity-content">
+                  <h4>Mise à jour système</h4>
+                  <p>La base de données a été synchronisée.</p>
+                  <div className="activity-time">Hier à 18:30</div>
+                </div>
+              </div>
+            </div>
+            <div style={{ padding: '1rem', borderTop: '1px solid var(--gray-100)', textAlign: 'center' }}>
+              <button className="btn-ghost" style={{ width: '100%', fontSize: '0.8rem' }}>Plus d'activités <ArrowRight size={14} /></button>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   );

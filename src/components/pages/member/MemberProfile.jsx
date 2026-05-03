@@ -1,4 +1,5 @@
 import React from 'react';
+import './MemberProfile.css';
 import { User, MapPin, Calendar, Mail, Phone, Shield } from 'lucide-react';
 
 export default function MemberProfile({ user }) {

@@ -2,8 +2,10 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import {
   ClipboardList, CalendarDays, Users, Handshake,
-  Trophy, UserCheck, BarChart3, Bot, LogOut, Shield
+  Trophy, UserCheck, BarChart3, Bot, LogOut, Megaphone
 } from 'lucide-react';
+import logoAjcm from '../../assets/logo_ajcm.svg';
+import './AdminLayout.css';
 
 export default function AdminLayout({ onLogout, user }) {
   return (
@@ -13,7 +15,7 @@ export default function AdminLayout({ onLogout, user }) {
         <div className="sidebar-header">
           <div className="sidebar-logo">
             <div className="sidebar-logo-icon">
-              <Shield size={20} />
+              <img src={logoAjcm} alt="Logo" />
             </div>
             <div className="sidebar-logo-text">
               <span className="brand">PlatformeAJCM</span>
@@ -28,34 +30,31 @@ export default function AdminLayout({ onLogout, user }) {
             <BarChart3 size={18} /><span>Statistiques</span>
           </NavLink>
 
-          <span className="nav-section-label">Contenu</span>
+          <span className="nav-section-label">Gestion de Contenu</span>
           <NavLink to="/admin/activities" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-            <ClipboardList size={18} /><span>Gestion activités</span>
-          </NavLink>
-          <NavLink to="/admin/calendar" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-            <CalendarDays size={18} /><span>Calendrier</span>
+            <ClipboardList size={20} /><span>Événements</span>
           </NavLink>
           <NavLink to="/admin/annonces" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-            <ClipboardList size={18} /><span>Annonces</span>
+            <Megaphone size={20} /><span>Annonces</span>
+          </NavLink>
+          <NavLink to="/admin/calendar" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+            <CalendarDays size={20} /><span>Calendrier</span>
           </NavLink>
 
-          <span className="nav-section-label">Membres & partenaires</span>
+          <span className="nav-section-label">Communauté</span>
           <NavLink to="/admin/members" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-            <Users size={18} /><span>Gestion membres</span>
+            <Users size={20} /><span>Membres</span>
           </NavLink>
           <NavLink to="/admin/registrations" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-            <UserCheck size={18} /><span>Inscriptions</span>
+            <UserCheck size={20} /><span>Inscriptions</span>
           </NavLink>
           <NavLink to="/admin/partners" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-            <Handshake size={18} /><span>Partenaires</span>
+            <Handshake size={20} /><span>Partenaires</span>
           </NavLink>
 
-          <span className="nav-section-label">Outils</span>
-          <NavLink to="/admin/trophies" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-            <Trophy size={18} /><span>Trophées</span>
-          </NavLink>
+          <span className="nav-section-label">Système</span>
           <NavLink to="/admin/ai-module" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-            <Bot size={18} /><span>Module IA</span>
+            <Bot size={20} /><span>Module IA</span>
           </NavLink>
         </nav>
 

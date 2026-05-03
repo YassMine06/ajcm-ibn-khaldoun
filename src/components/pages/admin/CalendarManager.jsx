@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CalendarManager.css';
 import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
 import { useEffect } from 'react';

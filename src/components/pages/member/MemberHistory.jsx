@@ -1,4 +1,5 @@
 import React from 'react';
+import './MemberHistory.css';
 import { History, CheckCircle, Calendar, MapPin } from 'lucide-react';
 
 const history = [

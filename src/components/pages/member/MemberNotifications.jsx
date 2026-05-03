@@ -1,4 +1,5 @@
 import React from 'react';
+import './MemberNotifications.css';
 import { Bell, CheckCircle, Info, AlertCircle, X } from 'lucide-react';
 
 const notifications = [

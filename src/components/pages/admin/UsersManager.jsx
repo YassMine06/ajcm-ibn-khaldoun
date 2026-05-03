@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './UsersManager.css';
 import { Plus, Edit2, Trash2, Users, Search, UserCheck, UserX } from 'lucide-react';
 
 const mockMembers = [
