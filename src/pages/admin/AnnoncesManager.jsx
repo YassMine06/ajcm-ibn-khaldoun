@@ -9,7 +9,7 @@ import annonceService from '../../api/annonceService';
 import useAsync from '../../hooks/useAsync';
 
 const initialAnnonce = { 
-  title: '', type: 'actualite', date: '', startTime: '', location: '', text: '', guest: '', image: '', maxParticipants: '' 
+  title: '', type: 'actualite', date: '', endDate: '', startTime: '', location: '', text: '', guest: '', image: '', maxParticipants: '' 
 };
 
 export default function AnnoncesManager() {
@@ -62,7 +62,21 @@ export default function AnnoncesManager() {
   };
 
   const handleEdit = (annonce) => { 
-    setCurrentAnnonce({ ...initialAnnonce, ...annonce }); 
+    const formatDate = (dateStr) => {
+      if (!dateStr || !dateStr.includes('/')) return dateStr || '';
+      const parts = dateStr.split('/');
+      if (parts.length === 3) {
+        return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+      }
+      return dateStr;
+    };
+
+    setCurrentAnnonce({ 
+      ...initialAnnonce, 
+      ...annonce, 
+      date: formatDate(annonce.date),
+      endDate: formatDate(annonce.endDate)
+    }); 
     setFormErrors({});
     setIsEditing(true); 
   };
@@ -136,7 +150,7 @@ export default function AnnoncesManager() {
                   <input type="text" className="form-control" placeholder="Titre accrocheur..." value={currentAnnonce.title || ''} onChange={e => setCurrentAnnonce({...currentAnnonce, title: e.target.value})} disabled={isSaving} />
                   {formErrors.title && <span style={{color:'var(--danger)', fontSize:'0.8rem'}}>{formErrors.title}</span>}
                 </div>
-                <div>
+                <div style={{ gridColumn: '1/-1' }}>
                   <label style={{ fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Type *</label>
                   <select className="form-control" value={currentAnnonce.type || 'actualite'} onChange={e => setCurrentAnnonce({...currentAnnonce, type: e.target.value})} disabled={isSaving}>
                     <option value="actualite">Actualité</option>
@@ -144,9 +158,13 @@ export default function AnnoncesManager() {
                   </select>
                 </div>
                 <div>
-                  <label style={{ fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Date *</label>
+                  <label style={{ fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Date de début *</label>
                   <input type="date" className="form-control" value={currentAnnonce.date || ''} onChange={e => setCurrentAnnonce({...currentAnnonce, date: e.target.value})} disabled={isSaving} />
                   {formErrors.date && <span style={{color:'var(--danger)', fontSize:'0.8rem'}}>{formErrors.date}</span>}
+                </div>
+                <div>
+                  <label style={{ fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Date de fin</label>
+                  <input type="date" className="form-control" value={currentAnnonce.endDate || ''} onChange={e => setCurrentAnnonce({...currentAnnonce, endDate: e.target.value})} disabled={isSaving} />
                 </div>
                 <div>
                   <label style={{ fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Heure</label>
@@ -164,12 +182,10 @@ export default function AnnoncesManager() {
                   <label style={{ fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Invités / Guests</label>
                   <input type="text" className="form-control" placeholder="Séparés par des virgules" value={currentAnnonce.guest || ''} onChange={e => setCurrentAnnonce({...currentAnnonce, guest: e.target.value})} disabled={isSaving} />
                 </div>
-                {currentAnnonce.type === 'evenement' && (
-                  <div style={{ gridColumn: '1/-1' }}>
-                    <label style={{ fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Nombre Max de Participants *</label>
-                    <input type="number" className="form-control" value={currentAnnonce.maxParticipants || ''} onChange={e => setCurrentAnnonce({...currentAnnonce, maxParticipants: e.target.value})} disabled={isSaving} />
-                  </div>
-                )}
+                <div style={{ gridColumn: '1/-1' }}>
+                  <label style={{ fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Nombre Max de Participants</label>
+                  <input type="number" className="form-control" value={currentAnnonce.maxParticipants || ''} onChange={e => setCurrentAnnonce({...currentAnnonce, maxParticipants: e.target.value})} disabled={isSaving} />
+                </div>
                 <div style={{ gridColumn: '1/-1' }}>
                   <label style={{ fontWeight: 600, display: 'block', marginBottom: '0.5rem' }}>Description *</label>
                   <textarea className="form-control" rows="6" dir="rtl" placeholder="Détails de l'annonce..." value={currentAnnonce.text || ''} onChange={e => setCurrentAnnonce({...currentAnnonce, text: e.target.value})} disabled={isSaving} />

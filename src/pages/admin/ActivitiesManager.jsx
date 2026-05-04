@@ -50,16 +50,26 @@ export default function ActivitiesManager() {
   };
 
   const startEdit = (event) => { 
-    // Format date for <input type="date"> (expects YYYY-MM-DD)
-    let formattedDate = event.date || event.startDate || '';
-    if (formattedDate && formattedDate.includes('/')) {
-      const parts = formattedDate.split('/');
+    // Format dates for <input type="date"> (expects YYYY-MM-DD)
+    const formatDate = (dateStr) => {
+      if (!dateStr || !dateStr.includes('/')) return dateStr || '';
+      const parts = dateStr.split('/');
       if (parts.length === 3) {
-        formattedDate = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+        return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
       }
-    }
+      return dateStr;
+    };
     
-    setCurrentEvent({ ...initialEventState, ...event, date: formattedDate, startDate: formattedDate }); 
+    const formattedStart = formatDate(event.date || event.startDate);
+    const formattedEnd = formatDate(event.endDate);
+    
+    setCurrentEvent({ 
+      ...initialEventState, 
+      ...event, 
+      date: formattedStart, 
+      startDate: formattedStart,
+      endDate: formattedEnd
+    }); 
     setIsEditing(true); 
   };
 
@@ -136,9 +146,14 @@ export default function ActivitiesManager() {
                         placeholder="Ex: Conférence sur l'IA" required disabled={isSaving} />
                     </div>
                     <div className="form-group">
-                      <label><Calendar size={14} style={{ marginRight: '4px' }} /> Date</label>
+                      <label><Calendar size={14} style={{ marginRight: '4px' }} /> Date de début</label>
                       <input type="date" className="form-control" value={currentEvent.date || ''}
                         onChange={e => setCurrentEvent({ ...currentEvent, date: e.target.value, startDate: e.target.value })} disabled={isSaving} />
+                    </div>
+                    <div className="form-group">
+                      <label><Calendar size={14} style={{ marginRight: '4px' }} /> Date de fin</label>
+                      <input type="date" className="form-control" value={currentEvent.endDate || ''}
+                        onChange={e => setCurrentEvent({ ...currentEvent, endDate: e.target.value })} disabled={isSaving} />
                     </div>
                     <div className="form-group">
                       <label><Clock size={14} style={{ marginRight: '4px' }} /> Heure de début</label>
@@ -154,11 +169,6 @@ export default function ActivitiesManager() {
                       <input type="text" className="form-control" value={currentEvent.guest || ''}
                         onChange={e => setCurrentEvent({ ...currentEvent, guest: e.target.value })} 
                         placeholder="Ex: Ahmed, Sara" disabled={isSaving} />
-                    </div>
-                    <div className="form-group">
-                      <label><Plus size={14} style={{ marginRight: '4px' }} /> Nombre Max Participants</label>
-                      <input type="number" className="form-control" value={currentEvent.maxParticipants || ''}
-                        onChange={e => setCurrentEvent({ ...currentEvent, maxParticipants: e.target.value })} disabled={isSaving} />
                     </div>
                     <div className="form-group" style={{ gridColumn: '1 / -1' }}>
                       <label>ID Dossier (Identifiant unique) *</label>
@@ -283,7 +293,7 @@ export default function ActivitiesManager() {
             <Search size={16} style={{ position: 'absolute', top: '50%', left: '0.85rem', transform: 'translateY(-50%)', color: 'var(--gray-400)' }} />
             <input type="text" className="form-control" placeholder="Rechercher..." style={{ paddingLeft: '2.5rem', width: '280px', height: '44px' }} value={search} onChange={e => setSearch(e.target.value)} />
           </div>
-          <button className="btn-primary" onClick={startAdd} style={{ height: '44px' }}><Plus size={18} /> Ajouter</button>
+          <button className="btn-primary" onClick={startAdd} style={{ height: '44px' }}><Plus size={18} /> Ajouter événement</button>
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminCalendar.css';
-import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, MapPin, AlertCircle, RefreshCw } from 'lucide-react';
+import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, MapPin, AlertCircle, RefreshCw, Plus } from 'lucide-react';
 import eventService from '../../api/eventService';
 import annonceService from '../../api/annonceService';
 import useAsync from '../../hooks/useAsync';
@@ -181,10 +181,26 @@ export default function AdminCalendar() {
         {/* RIGHT - Event List */}
         <div className="cal-right">
           <div className="cal-right-header">
-            <h2 className="cal-right-title">
-              {active ? `${active} ${MONTHS[month]} ${year}` : `${MONTHS[month]} ${year}`}
-            </h2>
-            <p className="cal-right-sub">{panelEvents.length} événement(s) au total</p>
+            <div>
+              <h2 className="cal-right-title">
+                {active ? `${active} ${MONTHS[month]} ${year}` : `${MONTHS[month]} ${year}`}
+              </h2>
+              <p className="cal-right-sub">{panelEvents.length} événement(s) au total</p>
+            </div>
+            {active && (
+              <button 
+                className="btn-primary" 
+                style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
+                onClick={() => {
+                  const selectedDate = new Date(year, month, active);
+                  // Format as YYYY-MM-DD for the form
+                  const formattedDate = `${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`;
+                  navigate('/admin/annonces', { state: { openForm: true, initialDate: formattedDate } });
+                }}
+              >
+                <Plus size={16} /> Ajouter une annonce
+              </button>
+            )}
           </div>
 
           {isLoading && events.length === 0 ? (

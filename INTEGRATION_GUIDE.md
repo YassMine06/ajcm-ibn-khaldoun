@@ -46,12 +46,12 @@ The frontend expects a login endpoint returning user data with a `role` (`admin`
 Managed via `eventService.js`.
 - **Primary Key:** `folder` (String)
 - **Date Format:** `YYYY-MM-DD`
-- **Fields:** `folder`, `title`, `date`, `startTime`, `lieu`, `description_fr`, `description_ar`, `media` (Array), `maxParticipants`.
+- **Fields:** `folder`, `title`, `date` (start), `endDate`, `startTime`, `lieu`, `description_fr`, `description_ar`, `media` (Array), `maxParticipants`.
 
 #### B. Annonces
 Managed via `annonceService.js`.
 - **Date Format:** `YYYY-MM-DD`
-- **Fields:** `id`, `title`, `type` (`actualite`|`evenement`), `date`, `startTime`, `location`, `text`, `image`.
+- **Fields:** `id`, `title`, `type` (`actualite`|`evenement`), `date` (start), `endDate`, `startTime`, `location`, `text`, `image`.
 
 #### C. Registrations (Inscriptions)
 Managed via `registrationService.js`.
