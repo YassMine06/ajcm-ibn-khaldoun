@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import './ActivitiesManager.css';
 import axios from 'axios';
 import { 
@@ -15,6 +16,7 @@ const initialEventState = {
 };
 
 export default function ActivitiesManager() {
+  const location = useLocation();
   const [events, setEvents] = useState([]);
   const [search, setSearch] = useState('');
   const [isEditing, setIsEditing] = useState(false);
@@ -33,7 +35,13 @@ export default function ActivitiesManager() {
     }
   };
 
-  useEffect(() => { fetchEvents(); }, []);
+  useEffect(() => { 
+    fetchEvents(); 
+    if (location.state?.openForm) {
+      startAdd();
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   const filtered = useMemo(() => {
     return events.filter(e =>

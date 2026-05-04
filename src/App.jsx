@@ -38,14 +38,10 @@ import MemberHistory from './components/pages/member/MemberHistory';
 import MemberNotifications from './components/pages/member/MemberNotifications';
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
+  const [user, setUser] = useState(() => {
     const loggedInUser = localStorage.getItem('user');
-    if (loggedInUser) {
-      setUser(JSON.parse(loggedInUser));
-    }
-  }, []);
+    return loggedInUser ? JSON.parse(loggedInUser) : null;
+  });
 
   const handleLogin = (userData) => {
     setUser(userData);

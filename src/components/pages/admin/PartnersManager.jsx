@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Handshake, Plus, Trash2, Edit2, Search, X, Globe, Image as ImageIcon } from 'lucide-react';
 import './PartnersManager.css';
@@ -6,6 +7,8 @@ import './PartnersManager.css';
 const initialPartner = { name: '', logo: '', url: '' };
 
 export default function PartnersManager() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [partners, setPartners] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [currentPartner, setCurrentPartner] = useState(initialPartner);
@@ -26,7 +29,11 @@ export default function PartnersManager() {
 
   useEffect(() => {
     fetchPartners();
-  }, []);
+    if (location.state?.openForm) {
+      handleAdd();
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   const handleAdd = () => {
     setCurrentPartner(initialPartner);

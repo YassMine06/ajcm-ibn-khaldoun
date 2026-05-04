@@ -251,7 +251,7 @@
 
 /* Charts Mockup */
 .chart-container {
-  padding: 1.5rem;
+  padding: 0 1rem;
   height: 200px;
   display: flex;
   align-items: flex-end;
@@ -262,15 +262,58 @@
   flex: 1;
   background: linear-gradient(to top, var(--green-800), var(--green-600));
   border-radius: 4px 4px 0 0;
-  transition: all 0.5s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-}
-
-.chart-bar:nth-child(even) {
-  background: linear-gradient(to top, var(--gold-600), var(--gold-400));
+  width: 100%;
 }
 
 .chart-bar:hover {
-  opacity: 0.8;
   filter: brightness(1.2);
+}
+
+.chart-tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--gray-900);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.chart-bar:hover .chart-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.growth-details > div {
+  transition: all 0.2s ease;
+}
+
+.growth-details > div:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 640px) {
+  .section-box > div {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .growth-details {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+  }
+  
+  .growth-details > div {
+    flex: 1;
+    min-width: 140px;
+  }
 }
