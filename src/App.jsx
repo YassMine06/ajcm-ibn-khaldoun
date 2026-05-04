@@ -32,7 +32,7 @@ import AIModule from './components/pages/admin/AIModule';
 import MemberProfile from './components/pages/member/MemberProfile';
 import EditProfile from './components/pages/member/EditProfile';
 import RegisterActivities from './components/pages/member/RegisterActivities';
-import MemberDashboard from './components/pages/member/MemberDashboard';
+
 import MemberCalendar from './components/pages/member/MemberCalendar';
 import MemberHistory from './components/pages/member/MemberHistory';
 import MemberNotifications from './components/pages/member/MemberNotifications';
@@ -51,6 +51,12 @@ function App() {
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem('user');
+  };
+
+  const handleUpdateUser = (updatedData) => {
+    const newUser = { ...user, ...updatedData };
+    setUser(newUser);
+    localStorage.setItem('user', JSON.stringify(newUser));
   };
 
   return (
@@ -101,9 +107,9 @@ function App() {
           <Navigate to="/login" />
         }>
           <Route path="profile" element={<MemberProfile user={user} />} />
-          <Route path="edit-profile" element={<EditProfile />} />
+          <Route path="edit-profile" element={<EditProfile user={user} onUpdateUser={handleUpdateUser} />} />
           <Route path="register-activities" element={<RegisterActivities />} />
-          <Route path="dashboard" element={<MemberDashboard />} />
+
           <Route path="calendar" element={<MemberCalendar />} />
           <Route path="history" element={<MemberHistory />} />
           <Route path="notifications" element={<MemberNotifications />} />

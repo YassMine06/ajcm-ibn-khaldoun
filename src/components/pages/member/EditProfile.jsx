@@ -2,16 +2,32 @@ import React, { useState } from 'react';
 import './EditProfile.css';
 import { Camera, Save, Edit3, User } from 'lucide-react';
 
-export default function EditProfile() {
-  const [form, setForm] = useState({ name: 'Member 1', email: '', phone: '', city: 'Mohammedia', bio: '' });
+export default function EditProfile({ user, onUpdateUser }) {
+  const [form, setForm] = useState({ 
+    name: user?.name || 'Ahmed Benali', 
+    joinDate: user?.joinDate || '2026-01-01', 
+    birthDate: user?.birthDate || '2002-05-15', 
+    cin: user?.cin || 'AB123456', 
+    email: user?.email || 'ahmed.b@ajcm.org', 
+    phone: user?.phone || '+212 661 123 456', 
+    password: '', 
+    address: user?.address || 'Casablanca, Oasis',
+    avatar: user?.avatar || null
+  });
   const [saved, setSaved] = useState(false);
 
   const handleChange = (e) => { setForm(p => ({ ...p, [e.target.name]: e.target.value })); setSaved(false); };
 
-  const handleSubmit = (e) => { e.preventDefault(); setSaved(true); };
+  const handleSubmit = (e) => { 
+    e.preventDefault(); 
+    if (onUpdateUser) {
+      onUpdateUser(form);
+    }
+    setSaved(true); 
+  };
 
   return (
-    <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
       <h1 className="page-title"><Edit3 size={24} /> Modifier mes informations</h1>
 
       {/* Avatar */}
@@ -65,10 +81,22 @@ export default function EditProfile() {
         )}
 
         <form onSubmit={handleSubmit}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-            <div className="form-group">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            <div className="form-group" style={{ gridColumn: '1/-1' }}>
               <label>Nom complet</label>
               <input type="text" name="name" className="form-control" value={form.name} onChange={handleChange} />
+            </div>
+            <div className="form-group">
+              <label>Date d'adhésion</label>
+              <input type="date" name="joinDate" className="form-control" value={form.joinDate} onChange={handleChange} />
+            </div>
+            <div className="form-group">
+              <label>Date de naissance</label>
+              <input type="date" name="birthDate" className="form-control" value={form.birthDate} onChange={handleChange} />
+            </div>
+            <div className="form-group">
+              <label>CIN</label>
+              <input type="text" name="cin" className="form-control" value={form.cin} onChange={handleChange} />
             </div>
             <div className="form-group">
               <label>Email</label>
@@ -79,15 +107,15 @@ export default function EditProfile() {
               <input type="text" name="phone" className="form-control" value={form.phone} onChange={handleChange} placeholder="+212 6XX XXX XXX" />
             </div>
             <div className="form-group">
-              <label>Ville</label>
-              <input type="text" name="city" className="form-control" value={form.city} onChange={handleChange} />
+              <label>Mot de passe</label>
+              <input type="password" name="password" className="form-control" value={form.password} onChange={handleChange} placeholder="Laissez vide pour ne pas changer" />
+            </div>
+            <div className="form-group" style={{ gridColumn: '1/-1' }}>
+              <label>Adresse</label>
+              <textarea name="address" className="form-control" rows="3" value={form.address} onChange={handleChange} />
             </div>
           </div>
-          <div className="form-group">
-            <label>Bio / Présentation</label>
-            <textarea name="bio" className="form-control" rows="4" value={form.bio} onChange={handleChange} placeholder="Présentez-vous en quelques mots..." />
-          </div>
-          <button type="submit" className="btn-primary">
+          <button type="submit" className="btn-primary" style={{ marginTop: '1rem' }}>
             <Save size={16} /> Enregistrer les modifications
           </button>
         </form>

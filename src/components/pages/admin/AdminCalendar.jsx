@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminCalendar.css';
 import axios from 'axios';
@@ -12,13 +12,7 @@ export default function AdminCalendar() {
   const [events, setEvents] = useState([]);
   const [today] = useState(new Date());
   const [current, setCurrent] = useState(new Date());
-
-  const handleDayClick = (day) => {
-    if (!day) return;
-    // Format YYYY-MM-DD
-    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    navigate('/admin/annonces', { state: { initialDate: dateStr, openForm: true } });
-  };
+  const [active, setActive] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,18 +22,16 @@ export default function AdminCalendar() {
           axios.get('http://localhost:5000/api/annonces')
         ]);
         
-        // Fusionner activités et annonces de type événement
         const combined = [
           ...eventsRes.data.map(e => {
             const rawDate = e.date || e.startDate;
             if (!rawDate) return null;
             const d = new Date(rawDate);
-            // Ajustement pour éviter le décalage de fuseau horaire sur les dates YYYY-MM-DD
             const localDate = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
             return { ...e, calendarDate: localDate, isActivity: true };
           }).filter(Boolean),
           ...annoncesRes.data
-            .filter(a => a.type === 'evenement')
+            .filter(a => a.type === 'evenement' || a.type === 'événement')
             .map(a => {
               const d = new Date(a.date);
               const localDate = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
@@ -56,12 +48,11 @@ export default function AdminCalendar() {
 
   const year = current.getFullYear();
   const month = current.getMonth();
-  // Ajustement pour commencer la semaine le Lundi (getDay() : 0=Dim, 1=Lun...)
   const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  const prev = () => setCurrent(new Date(year, month - 1, 1));
-  const next = () => setCurrent(new Date(year, month + 1, 1));
+  const prev = () => { setActive(null); setCurrent(new Date(year, month - 1, 1)); };
+  const next = () => { setActive(null); setCurrent(new Date(year, month + 1, 1)); };
 
   const cells = [];
   for (let i = 0; i < firstDay; i++) cells.push(null);
@@ -74,107 +65,146 @@ export default function AdminCalendar() {
     });
   };
 
+  const panelEvents = useMemo(() => {
+    if (active) return getDayEvents(active);
+    return events.filter(e => {
+      const d = e.calendarDate;
+      return d.getMonth() === month && d.getFullYear() === year;
+    }).sort((a, b) => a.calendarDate - b.calendarDate);
+  }, [events, active, month, year]);
+
+  const handleDayClick = (day) => {
+    if (!day) return;
+    setActive(active === day ? null : day);
+  };
+
+  const handleNavigateToEdit = (evt) => {
+    const route = evt.isAnnonce ? '/admin/annonces' : '/admin/activities';
+    navigate(route, { state: { initialDate: evt.date || evt.startDate } });
+  };
+
   return (
     <div style={{ width: '100%' }}>
-      <h1 className="page-title"><CalendarIcon size={24} /> Calendrier des événements</h1>
+      <h1 className="page-title"><CalendarIcon size={24} /> Gestion du Calendrier</h1>
       
-      <div className="table-container" style={{ width: '100%', padding: '1.25rem', backgroundColor: '#F8FAFC', borderRadius: '16px', border: '1px solid #E2E8F0' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <button className="btn-icon" onClick={prev} style={{ border: '1px solid #E2E8F0', width: '32px', height: '32px', backgroundColor: '#FFFFFF' }}><ChevronLeft size={16} color="#64748B" /></button>
-            
-            <div style={{ display: 'flex', gap: '6px' }}>
-              <select 
-                value={month} 
-                onChange={(e) => setCurrent(new Date(year, parseInt(e.target.value), 1))}
-                style={{ border: '1px solid #E2E8F0', borderRadius: '8px', padding: '0.4rem 0.75rem', fontWeight: 600, fontSize: '0.85rem', color: '#1E293B', cursor: 'pointer', background: '#FFFFFF', outline: 'none' }}
-              >
-                {MONTHS.map((m, i) => <option key={i} value={i}>{m}</option>)}
-              </select>
+      <div className="calendar-split">
+        {/* LEFT - Mini Calendar Widget */}
+        <div className="cal-left">
+          <div className="cal-card">
+            <div className="cal-header">
+              <button className="cal-nav-btn" onClick={prev}><ChevronLeft size={18} /></button>
               
-              <select 
-                value={year} 
-                onChange={(e) => setCurrent(new Date(parseInt(e.target.value), month, 1))}
-                style={{ border: '1px solid #E2E8F0', borderRadius: '8px', padding: '0.4rem 0.75rem', fontWeight: 600, fontSize: '0.85rem', color: '#1E293B', cursor: 'pointer', background: '#FFFFFF', outline: 'none' }}
-              >
-                {[...Array(11)].map((_, i) => {
-                  const y = 2020 + i;
-                  return <option key={y} value={y}>{y}</option>
-                })}
-              </select>
+              <div className="cal-selectors">
+                <select 
+                  className="cal-select"
+                  value={month} 
+                  onChange={(e) => { setActive(null); setCurrent(new Date(year, parseInt(e.target.value), 1)); }}
+                >
+                  {MONTHS.map((m, i) => <option key={i} value={i}>{m}</option>)}
+                </select>
+                <select 
+                  className="cal-select"
+                  value={year} 
+                  onChange={(e) => { setActive(null); setCurrent(new Date(parseInt(e.target.value), month, 1)); }}
+                >
+                  {[...Array(11)].map((_, i) => {
+                    const y = 2020 + i;
+                    return <option key={y} value={y}>{y}</option>
+                  })}
+                </select>
+              </div>
+
+              <button className="cal-nav-btn" onClick={next}><ChevronRight size={18} /></button>
             </div>
 
-            <button className="btn-icon" onClick={next} style={{ border: '1px solid #E2E8F0', width: '32px', height: '32px', backgroundColor: '#FFFFFF' }}><ChevronRight size={16} color="#64748B" /></button>
-          </div>
-          
-          <div style={{ display: 'flex', gap: '0.75rem' }}>
-            <button className="btn-ghost" style={{ fontSize: '0.8rem', padding: '0.4rem 1rem', backgroundColor: '#FFFFFF', border: '1px solid #E2E8F0', color: '#64748B' }} onClick={() => setCurrent(new Date())}>Aujourd'hui</button>
+            <div className="cal-day-labels">
+              {DAYS.map(d => <div key={d} className="cal-day-label">{d}</div>)}
+            </div>
+
+            <div className="cal-grid">
+              {cells.map((day, i) => {
+                const dayEvents = day ? getDayEvents(day) : [];
+                const hasEvts = dayEvents.length > 0;
+                const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+                const isActive = day === active;
+                
+                return (
+                  <div 
+                    key={i} 
+                    className={`cal-cell ${!day ? 'cal-cell--empty' : ''} ${hasEvts ? 'cal-cell--has' : ''} ${isToday ? 'cal-cell--today' : ''} ${isActive ? 'cal-cell--active' : ''}`}
+                    onClick={() => handleDayClick(day)}
+                  >
+                    {day && <span className="cal-cell-num">{day}</span>}
+                    {hasEvts && (
+                      <div className="cal-dots">
+                        {dayEvents.slice(0, 3).map((e, idx) => (
+                          <span key={idx} className="cal-dot" style={{ backgroundColor: e.isActivity ? 'var(--success)' : 'var(--info)' }} />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="cal-footer">
+              <div className="cal-stat">
+                <strong>{panelEvents.length}</strong> {active ? 'événement(s) ce jour' : 'en ce mois'}
+              </div>
+              <button className="cal-today-btn" onClick={() => { setActive(today.getDate()); setCurrent(new Date()); }}>Aujourd'hui</button>
+            </div>
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '6px', marginBottom: '0.5rem' }}>
-          {DAYS.map(d => (
-            <div key={d} style={{ textAlign: 'center', fontWeight: 700, fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#64748B', padding: '0.15rem' }}>{d}</div>
-          ))}
-        </div>
-        
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '6px' }}>
-          {cells.map((day, i) => {
-            const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-            const dayEvents = day ? getDayEvents(day) : [];
-            return (
-              <div key={i} style={{
-                minHeight: '85px',
-                borderRadius: '10px',
-                backgroundColor: day ? '#FFFFFF' : 'transparent',
-                border: day ? `1px solid ${isToday ? '#3B82F6' : '#E2E8F0'}` : 'none',
-                padding: '0.4rem',
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '3px',
-                boxShadow: day ? '0 1px 2px rgba(0,0,0,0.03)' : 'none',
-                overflow: 'hidden',
-                transition: 'all 0.2s ease',
-                cursor: day ? 'pointer' : 'default'
-              }}
-              onClick={() => handleDayClick(day)}
-              onMouseEnter={(e) => { if(day) e.currentTarget.style.backgroundColor = '#EFF6FF'; }}
-              onMouseLeave={(e) => { if(day) e.currentTarget.style.backgroundColor = '#FFFFFF'; }}
-              >
-                {day && (
-                  <div style={{ 
-                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                    width: '18px', height: '18px', borderRadius: '5px',
-                    backgroundColor: isToday ? '#3B82F6' : 'transparent',
-                    color: isToday ? '#FFFFFF' : '#64748B',
-                    fontWeight: 700, fontSize: '0.65rem',
-                    marginBottom: '0.25rem'
-                  }}>
-                    {day}
+        {/* RIGHT - Event List */}
+        <div className="cal-right">
+          <div className="cal-right-header">
+            <h2 className="cal-right-title">
+              {active ? `${active} ${MONTHS[month]} ${year}` : `${MONTHS[month]} ${year}`}
+            </h2>
+            <p className="cal-right-sub">{panelEvents.length} événement(s) au total</p>
+          </div>
+
+          {panelEvents.length === 0 ? (
+            <div className="cal-empty-state">
+              <CalendarIcon size={40} style={{ marginBottom: '1rem', opacity: 0.3 }} />
+              <p>Aucun événement prévu pour cette période.</p>
+            </div>
+          ) : (
+            <div className="cal-event-list">
+              {panelEvents.map((evt, idx) => (
+                <div key={idx} className="cal-evt-card" onClick={() => handleNavigateToEdit(evt)}>
+                  <div className="cal-evt-poster">
+                    {evt.image ? (
+                      <img src={evt.image.startsWith('data:') ? evt.image : `/${evt.image}`} alt={evt.title} />
+                    ) : (
+                      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gray-400)' }}>
+                        <CalendarIcon size={24} />
+                      </div>
+                    )}
                   </div>
-                )}
-                {dayEvents.map((ev, idx) => (
-                  <div key={idx} style={{ 
-                    backgroundColor: ev.isActivity ? '#dcfce7' : '#dbeafe', 
-                    borderLeft: `3px solid ${ev.isActivity ? '#22c55e' : '#3b82f6'}`,
-                    color: ev.isActivity ? '#166534' : '#1e40af',
-                    padding: '2px 6px',
-                    borderRadius: '4px',
-                    fontSize: '0.6rem',
-                    fontWeight: 700,
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    lineHeight: '1.4',
-                    marginBottom: '1px'
-                  }} title={ev.title}>
-                    {ev.isAnnonce ? '📢 ' : ''}{ev.title}
+                  <div className="cal-evt-body">
+                    <span className="cal-evt-type-badge" style={{ 
+                      backgroundColor: evt.isActivity ? 'var(--success-bg)' : 'var(--info-bg)',
+                      color: evt.isActivity ? 'var(--success)' : 'var(--info)'
+                    }}>
+                      {evt.isActivity ? 'Activité' : 'Événement'}
+                    </span>
+                    <h3 className="cal-evt-title">{evt.title}</h3>
+                    <p className="cal-evt-desc">{evt.desc || evt.text || 'Pas de description.'}</p>
+                    <div className="cal-evt-meta">
+                      <div className="cal-meta-item">
+                        <Clock size={14} /> {evt.startTime || 'Heure non spécifiée'}
+                      </div>
+                      <div className="cal-meta-item">
+                        <MapPin size={14} /> {evt.location || evt.lieu || 'AJCM'}
+                      </div>
+                    </div>
                   </div>
-                ))}
-              </div>
-            );
-          })}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

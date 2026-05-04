@@ -8,8 +8,12 @@ export default function MemberProfile({ user }) {
       {/* Profile Hero Card */}
       <div className="table-container" style={{ padding: '2rem', marginBottom: '1.5rem', background: 'linear-gradient(135deg, var(--green-800) 0%, var(--green-700) 100%)', color: 'white', border: 'none' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-          <div style={{ width: '90px', height: '90px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--gold-500), var(--gold-600))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', fontWeight: 800, color: 'white', flexShrink: 0, boxShadow: '0 8px 24px rgba(0,0,0,0.3)' }}>
-            {user.name.charAt(0).toUpperCase()}
+          <div style={{ width: '90px', height: '90px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--gold-500), var(--gold-600))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2.5rem', fontWeight: 800, color: 'white', flexShrink: 0, boxShadow: '0 8px 24px rgba(0,0,0,0.3)', overflow: 'hidden' }}>
+            {user.avatar ? (
+              <img src={user.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            ) : (
+              user.name.charAt(0).toUpperCase()
+            )}
           </div>
           <div style={{ flex: 1 }}>
             <h1 style={{ fontSize: '1.5rem', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '0.25rem' }}>{user.name}</h1>
@@ -29,11 +33,11 @@ export default function MemberProfile({ user }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
           {[
             { icon: <User size={16} />, label: 'Nom complet', value: user.name },
-            { icon: <Mail size={16} />, label: 'Email', value: 'membre@ajcm.org' },
-            { icon: <Phone size={16} />, label: 'Téléphone', value: '+212 600 000 000' },
-            { icon: <MapPin size={16} />, label: 'Ville', value: 'Mohammedia' },
-            { icon: <Calendar size={16} />, label: "Date d'adhésion", value: '01 Janvier 2026' },
-            { icon: <Shield size={16} />, label: 'Rôle', value: 'Membre actif' },
+            { icon: <Mail size={16} />, label: 'Email', value: user.email || 'membre@ajcm.org' },
+            { icon: <Phone size={16} />, label: 'Téléphone', value: user.phone || '+212 600 000 000' },
+            { icon: <MapPin size={16} />, label: 'Ville', value: user.address || 'Mohammedia' },
+            { icon: <Calendar size={16} />, label: "Date d'adhésion", value: user.joinDate || '01 Janvier 2026' },
+            { icon: <Shield size={16} />, label: 'Rôle', value: user.role === 'member' ? 'Membre actif' : user.role },
           ].map((item, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', padding: '0.75rem', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--gray-100)' }}>
               <div style={{ color: 'var(--green-700)', marginTop: '2px', flexShrink: 0 }}>{item.icon}</div>

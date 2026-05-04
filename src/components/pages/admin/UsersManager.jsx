@@ -8,12 +8,13 @@ import {
 
 const initialMember = {
   id: '', name: '', birthDate: '', email: '', password: '', phone: '', 
-  cin: '', address: '', role: 'membre', photo: '', status: 'active'
+  cin: '', address: '', role: 'membre', photo: '', status: 'active',
+  joinDate: new Date().toISOString().split('T')[0]
 };
 
 const mockMembers = [
-  { id: 'M-2026-001', name: 'Ahmed Benali', birthDate: '2002-05-15', email: 'ahmed.b@ajcm.org', phone: '+212 661 123 456', cin: 'AB123456', address: 'Casablanca, Oasis', joinDate: '01 Jan 2026', status: 'active', role: 'bureau' },
-  { id: 'M-2026-002', name: 'Sara Moussaoui', birthDate: '2005-11-20', email: 'sara.m@ajcm.org', phone: '+212 662 987 654', cin: 'CD654321', address: 'Mohammedia, Parc', joinDate: '15 Fév 2026', status: 'active', role: 'membre' },
+  { id: 'M-2026-001', name: 'Ahmed Benali', birthDate: '2002-05-15', email: 'ahmed.b@ajcm.org', phone: '+212 661 123 456', cin: 'AB123456', address: 'Casablanca, Oasis', joinDate: '2026-01-01', status: 'active', role: 'bureau' },
+  { id: 'M-2026-002', name: 'Sara Moussaoui', birthDate: '2005-11-20', email: 'sara.m@ajcm.org', phone: '+212 662 987 654', cin: 'CD654321', address: 'Mohammedia, Parc', joinDate: '2026-02-15', status: 'active', role: 'membre' },
 ];
 
 export default function UsersManager() {
@@ -148,6 +149,10 @@ export default function UsersManager() {
                 <input required type="text" className="search-input" value={currentMember.name} onChange={e => setCurrentMember({...currentMember, name: e.target.value})} />
               </div>
               <div>
+                <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem' }}>Date d'adhésion</label>
+                <input required type="date" className="search-input" value={currentMember.joinDate} onChange={e => setCurrentMember({...currentMember, joinDate: e.target.value})} />
+              </div>
+              <div>
                 <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem' }}>Date de naissance</label>
                 <input required type="date" className="search-input" value={currentMember.birthDate} onChange={e => setCurrentMember({...currentMember, birthDate: e.target.value})} />
                 <p style={{ margin: '4px 0 0 0', fontSize: '0.75rem', color: 'var(--saas-text-muted)' }}>Âge calculé : {calculateAge(currentMember.birthDate)} ans</p>
@@ -161,12 +166,12 @@ export default function UsersManager() {
                 <input required type="email" className="search-input" value={currentMember.email} onChange={e => setCurrentMember({...currentMember, email: e.target.value})} />
               </div>
               <div>
-                <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem' }}>Mot de passe</label>
-                <input required type="password" placeholder="••••••••" className="search-input" value={currentMember.password} onChange={e => setCurrentMember({...currentMember, password: e.target.value})} />
-              </div>
-              <div>
                 <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem' }}>Téléphone</label>
                 <input type="text" className="search-input" value={currentMember.phone} onChange={e => setCurrentMember({...currentMember, phone: e.target.value})} />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem' }}>Mot de passe</label>
+                <input required type="password" placeholder="••••••••" className="search-input" value={currentMember.password} onChange={e => setCurrentMember({...currentMember, password: e.target.value})} />
               </div>
               <div style={{ gridColumn: '1/-1' }}>
                 <label style={{ display: 'block', fontWeight: 600, marginBottom: '0.5rem' }}>Adresse</label>
@@ -245,6 +250,7 @@ export default function UsersManager() {
                 <td>
                   <div style={{ fontSize: '0.85rem', color: 'var(--saas-text-muted)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Cake size={12} /> {calculateAge(m.birthDate)} ans</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Calendar size={12} /> Adhésion: {new Date(m.joinDate).toLocaleDateString('fr-FR')}</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><CreditCard size={12} /> {m.cin}</div>
                   </div>
                 </td>

@@ -31,9 +31,7 @@ export default function MemberLayout({ onLogout, user }) {
           </NavLink>
 
           <span className="nav-section-label">Mes événements</span>
-          <NavLink to="/membre/dashboard" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-            <LayoutDashboard size={18} /><span>Tableau de bord</span>
-          </NavLink>
+
           <NavLink to="/membre/register-activities" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             <ClipboardList size={18} /><span>Inscription événements</span>
           </NavLink>
@@ -52,8 +50,12 @@ export default function MemberLayout({ onLogout, user }) {
 
         <div className="sidebar-footer">
           <div className="sidebar-user">
-            <div className="sidebar-user-avatar">
-              {user.name.charAt(0).toUpperCase()}
+            <div className="sidebar-user-avatar" style={{ overflow: 'hidden' }}>
+              {user.avatar ? (
+                <img src={user.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : (
+                user.name.charAt(0).toUpperCase()
+              )}
             </div>
             <div className="sidebar-user-info">
               <div className="sidebar-user-name">{user.name}</div>
@@ -79,7 +81,13 @@ export default function MemberLayout({ onLogout, user }) {
               <div className="topbar-user-name">{user.name}</div>
               <div className="topbar-user-role">Membre actif</div>
             </div>
-            <div className="topbar-avatar">{user.name.charAt(0).toUpperCase()}</div>
+            <div className="topbar-avatar" style={{ overflow: 'hidden' }}>
+              {user.avatar ? (
+                <img src={user.avatar} alt="Avatar" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : (
+                user.name.charAt(0).toUpperCase()
+              )}
+            </div>
           </div>
         </header>
         <div className="content-area">
