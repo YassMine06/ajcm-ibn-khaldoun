@@ -48,3 +48,22 @@ button {
   outline: none;
   transition: 0.3s;
 }
+
+/* ── Section Titles Global Force ── */
+.section-title, .section-header h2 {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: clamp(1.5rem, 3.5vw, 2rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  color: #0a4d3c !important; /* Original Deep Green */
+  margin: 0 !important;
+  text-transform: none !important; /* Allow the code to decide casing */
+}
+
+.section-divider {
+  width: 40px !important;
+  height: 3px !important;
+  background: #C9A227 !important; /* Original Gold */
+  border-radius: 2px !important;
+  margin-top: 10px !important;
+}

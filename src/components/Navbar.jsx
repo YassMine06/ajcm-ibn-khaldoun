@@ -5,7 +5,6 @@ import './Navbar.css';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('Accueil');
   const location = useLocation();
 
   // Pages that start with a dark hero background at the top
@@ -50,17 +49,20 @@ const Navbar = () => {
         {/* ── Links ── */}
         <div className={`nav-menu ${mobileMenuOpen ? 'active' : ''}`}>
           <ul className="nav-links">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  to={link.href}
-                  className={activeLink === link.name ? 'active' : ''}
-                  onClick={() => { setActiveLink(link.name); setMobileMenuOpen(false); }}
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.href || (link.href !== '/' && location.pathname.startsWith(link.href));
+              return (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className={isActive ? 'active' : ''}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
           <div className="nav-actions">
             <Link to="/inscription" className="btn-enroll">S'inscrire</Link>
