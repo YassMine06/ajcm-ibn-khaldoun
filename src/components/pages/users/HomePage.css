@@ -21,21 +21,21 @@
 
 .section-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.8rem;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
     font-weight: 800;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #1a1a1a;
+    color: #0a4d3c; /* Deep Green from original design */
     margin: 0;
     line-height: 1.2;
 }
 
 .section-divider {
-    width: 60px;
-    height: 4px;
-    background: #4a7c59;
+    width: 40px;
+    height: 3px;
+    background: #C9A227;
     border-radius: 2px;
-    margin-top: 8px;
+    margin-top: 10px;
 }
 
 /* ═══════════════════════════════════════ */

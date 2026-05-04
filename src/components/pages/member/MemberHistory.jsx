@@ -12,15 +12,15 @@ const history = [
 export default function MemberHistory() {
   return (
     <div>
-      <h1 className="page-title"><History size={24} /> Historique des activités</h1>
+      <h1 className="page-title"><History size={24} /> Historique des événements</h1>
       <div className="table-container">
         <div className="table-header">
-          <h2>{history.length} activité(s) participée(s)</h2>
+          <h2>{history.length} événement(s) participé(s)</h2>
           <span className="badge badge-success"><CheckCircle size={12} /> Toutes validées</span>
         </div>
         <table>
           <thead>
-            <tr><th>#</th><th>Activité</th><th>Date</th><th>Lieu</th><th>Statut</th></tr>
+            <tr><th>#</th><th>Événement</th><th>Date</th><th>Lieu</th><th>Statut</th></tr>
           </thead>
           <tbody>
             {history.map((h, i) => (

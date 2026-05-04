@@ -21,7 +21,7 @@
   pointer-events: none;
 }
 
-.hero-content {
+.stats-hero-content {
   display: flex;
   align-items: center;
   gap: 1.5rem;

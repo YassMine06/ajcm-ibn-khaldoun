@@ -30,12 +30,12 @@ export default function MemberLayout({ onLogout, user }) {
             <Edit3 size={18} /><span>Modifier mes infos</span>
           </NavLink>
 
-          <span className="nav-section-label">Mes activités</span>
+          <span className="nav-section-label">Mes événements</span>
           <NavLink to="/membre/dashboard" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             <LayoutDashboard size={18} /><span>Tableau de bord</span>
           </NavLink>
           <NavLink to="/membre/register-activities" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
-            <ClipboardList size={18} /><span>Inscription activités</span>
+            <ClipboardList size={18} /><span>Inscription événements</span>
           </NavLink>
           <NavLink to="/membre/history" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             <History size={18} /><span>Historique</span>

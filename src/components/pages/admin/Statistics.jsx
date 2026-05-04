@@ -37,7 +37,7 @@ export default function Statistics() {
     <div className="statistics-page">
       {/* Hero Section */}
       <div className="stats-hero" style={{ backgroundImage: `linear-gradient(rgba(11, 61, 43, 0.8), rgba(7, 31, 22, 0.9)), url(${dashPattern})` }}>
-        <div className="hero-content">
+        <div className="stats-hero-content">
           <div className="hero-icon">
             <ShieldCheck size={40} color="var(--gold-400)" />
           </div>
@@ -82,7 +82,7 @@ export default function Statistics() {
 
           <div className="table-container" style={{ margin: 0 }}>
             <div className="table-header">
-              <h2><ClipboardList size={18} color="var(--green-700)" /> Activités récentes</h2>
+              <h2><ClipboardList size={18} color="var(--green-700)" /> Événements récents</h2>
               <button className="btn-ghost" style={{ padding: '0.3rem 0.75rem', fontSize: '0.75rem' }}>Voir tout</button>
             </div>
             <table>
@@ -107,7 +107,7 @@ export default function Statistics() {
                     <td><span className="badge badge-success">Publié</span></td>
                   </tr>
                 )) : (
-                  <tr><td colSpan="4" className="text-center text-muted">Aucune activité récente</td></tr>
+                  <tr><td colSpan="4" className="text-center text-muted">Aucun événement récent</td></tr>
                 )}
               </tbody>
             </table>
@@ -172,7 +172,7 @@ export default function Statistics() {
               </div>
             </div>
             <div style={{ padding: '1rem', borderTop: '1px solid var(--gray-100)', textAlign: 'center' }}>
-              <button className="btn-ghost" style={{ width: '100%', fontSize: '0.8rem' }}>Plus d'activités <ArrowRight size={14} /></button>
+              <button className="btn-ghost" style={{ width: '100%', fontSize: '0.8rem' }}>Plus d'événements <ArrowRight size={14} /></button>
             </div>
           </div>
 

@@ -101,15 +101,6 @@
 }
 
 @media (max-width: 900px) {
-  .hero-section {
-    flex-direction: column;
-    justify-content: center;
-    padding-right: 0;
-  }
-  .hero-impact-wrapper {
-    margin-top: 40px;
-    width: 100%;
-  }
   .impact-bar {
     grid-template-columns: 1fr 1fr;
     background: rgba(20, 30, 20, 0.6);

@@ -7,6 +7,7 @@ import logoAjcm from '../../assets/logo_ajcm.svg';
 import './LoginPage.css';
 
 export default function LoginPage({ onLogin }) {
+  const [activeTab, setActiveTab] = useState('admin'); // 'admin' or 'member'
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -36,11 +37,11 @@ export default function LoginPage({ onLogin }) {
               <img src={logoAjcm} alt="Logo AJCM" />
             </div>
             <div className="nav-logo-text">
-            <span className="nav-logo-title">A.J.C.M</span>
-            <span className="nav-logo-sub">
-              ASSOCIATION JEUNESSE <br />DE LA CITOYENNETÉ MAROCAINE<br />MOHAMMEDIA IBN KHALDOUN
-            </span>
-          </div>
+              <span className="nav-logo-title">A.J.C.M</span>
+              <span className="nav-logo-sub">
+                ASSOCIATION JEUNESSE <br />DE LA CITOYENNETÉ MAROCAINE<br />MOHAMMEDIA IBN KHALDOUN
+              </span>
+            </div>
           </div>
           <h1>
             Plateforme de <span>gestion</span>
@@ -54,12 +55,33 @@ export default function LoginPage({ onLogin }) {
       {/* Right panel */}
       <div className="login-right">
         <div className="login-card">
+          <div className="login-tabs">
+            <button 
+              className={`login-tab ${activeTab === 'admin' ? 'active' : ''}`}
+              onClick={() => setActiveTab('admin')}
+            >
+              <Shield size={18} />
+              Admin
+            </button>
+            <button 
+              className={`login-tab ${activeTab === 'member' ? 'active' : ''}`}
+              onClick={() => setActiveTab('member')}
+            >
+              <User size={18} />
+              Membre
+            </button>
+          </div>
+
           <div className="login-card-logo">
             <div className="login-card-icon">
-              <Shield size={28} />
+              {activeTab === 'admin' ? <Shield size={28} /> : <LogIn size={28} />}
             </div>
-            <h2>Connexion à <span>AJCM</span></h2>
-            <p>Entrez vos identifiants pour accéder à la plateforme</p>
+            <h2>Connexion <span>{activeTab === 'admin' ? 'Administrateur' : 'Espace Membre'}</span></h2>
+            <p>
+              {activeTab === 'admin' 
+                ? 'Accédez aux outils de gestion de l\'association' 
+                : 'Consultez votre profil et participez aux événements'}
+            </p>
           </div>
 
           {error && (
@@ -70,13 +92,13 @@ export default function LoginPage({ onLogin }) {
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label>Nom d'utilisateur</label>
+              <label>{activeTab === 'admin' ? 'Identifiant Admin' : 'Email ou Identifiant'}</label>
               <div className="input-wrapper">
                 <User size={16} />
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="ex: admin"
+                  placeholder={activeTab === 'admin' ? 'ex: admin' : 'votre identifiant'}
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
@@ -111,7 +133,7 @@ export default function LoginPage({ onLogin }) {
           </form>
 
           <div className="login-hint">
-            <strong>Démo :</strong> admin / password &nbsp;·&nbsp; member1 / password
+            <strong>Aide :</strong> Utilisez vos identifiants fournis par l'AJCM.
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './AnnoncesManager.css';
 import axios from 'axios';
 import { Plus, Check, X, Image as ImageIcon, Layout, Search, Megaphone, Clock } from 'lucide-react';
@@ -15,46 +16,46 @@ export default function AnnoncesManager() {
   const [currentAnnonce, setCurrentAnnonce] = useState(initialAnnonce);
   const [formErrors, setFormErrors] = useState({});
   const [search, setSearch] = useState('');
-  const [showRegistrations, setShowRegistrations] = useState(false);
-  const [registrations, setRegistrations] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const fetchAnnonces = async () => {
-    try { const res = await axios.get('http://localhost:5000/api/annonces'); setAnnonces(res.data); } catch {}
-  };
-
-  useEffect(() => { fetchAnnonces(); }, []);
-
-  const handleDelete = async (id) => {
-    if (window.confirm('Supprimer cette annonce ?')) {
-      try { await axios.delete(`http://localhost:5000/api/annonces/${id}`); fetchAnnonces(); } catch (err) { alert('Erreur lors de la suppression'); }
+    try { 
+      const res = await axios.get('http://localhost:5000/api/annonces'); 
+      setAnnonces(res.data); 
+    } catch (err) {
+      console.error("Error fetching annonces", err);
     }
   };
 
-  const fetchRegistrations = async (annonceId) => {
-    try {
-      const res = await axios.get(`http://localhost:5000/api/annonces/${annonceId}/registrations`);
-      setRegistrations(res.data);
-    } catch {
-      setRegistrations([
-        { id: 1, name: 'Jean Dupont', email: 'jean@example.com', status: 'pending', date: '2026-05-01' },
-        { id: 2, name: 'Marie Curie', email: 'marie@science.fr', status: 'accepted', date: '2026-05-02' }
-      ]);
+  useEffect(() => { 
+    fetchAnnonces(); 
+
+    if (location.state?.openForm) {
+      setCurrentAnnonce({
+        ...initialAnnonce,
+        date: location.state.initialDate || '',
+        type: 'evenement'
+      });
+      setIsEditing(true);
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
+
+  const handleDelete = async (id) => {
+    if (window.confirm('Supprimer cette annonce ?')) {
+      try { 
+        await axios.delete(`http://localhost:5000/api/annonces/${id}`); 
+        fetchAnnonces(); 
+      } catch (err) { 
+        alert('Erreur lors de la suppression'); 
+      }
     }
   };
 
   const handleViewRegistrations = (annonce) => {
-    setCurrentAnnonce(annonce);
-    fetchRegistrations(annonce.id);
-    setShowRegistrations(true);
-  };
-
-  const handleUpdateRegStatus = async (regId, status) => {
-    try {
-      await axios.patch(`http://localhost:5000/api/registrations/${regId}`, { status });
-      if (currentAnnonce.id) fetchRegistrations(currentAnnonce.id);
-    } catch {
-      setRegistrations(prev => prev.map(r => r.id === regId ? { ...r, status } : r));
-    }
+    // Naviguer vers l'URL spécifique des inscrits de cet événement
+    navigate(`/admin/registrations/${encodeURIComponent(annonce.title)}`);
   };
 
   const handleEdit = (annonce) => { 
@@ -89,7 +90,8 @@ export default function AnnoncesManager() {
       } else {
         await axios.post('http://localhost:5000/api/annonces', currentAnnonce);
       }
-      setIsEditing(false); fetchAnnonces();
+      setIsEditing(false); 
+      fetchAnnonces();
     } catch (err) {
       alert('Erreur lors de l\'enregistrement');
     }
@@ -109,7 +111,6 @@ export default function AnnoncesManager() {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '2rem' }}>
-          {/* GAUCHE : FORMULAIRE */}
           <div className="section-box" style={{ padding: '2.5rem' }}>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--green-800)' }}>
               <Layout size={20} /> Détails de l'Annonce
@@ -168,7 +169,6 @@ export default function AnnoncesManager() {
             </form>
           </div>
 
-          {/* DROITE : MÉDIA & APERÇU */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div className="section-box" style={{ padding: '2rem' }}>
               <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -251,51 +251,10 @@ export default function AnnoncesManager() {
             type={annonce.type}
             onEdit={() => handleEdit(annonce)}
             onDelete={() => handleDelete(annonce.id)}
-            onViewRegistrations={annonce.type === 'evenement' ? () => handleViewRegistrations(annonce) : null}
+            onViewRegistrations={(annonce.type === 'evenement' || !annonce.type) ? () => handleViewRegistrations(annonce) : null}
           />
         ))}
       </div>
-
-      {showRegistrations && (
-        <div className="clock-modal-overlay" onClick={() => setShowRegistrations(false)}>
-          <div className="clock-modal" style={{ width: '600px', maxWidth: '90vw' }} onClick={e => e.stopPropagation()}>
-            <div style={{ display: 'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'1.5rem' }}>
-              <h2 style={{ margin:0 }}>Participants - {currentAnnonce?.title}</h2>
-              <button className="btn-icon" onClick={() => setShowRegistrations(false)}><X size={20} /></button>
-            </div>
-            <div className="table-container" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-              <table style={{ width: '100%' }}>
-                <thead>
-                  <tr><th>Nom</th><th>Email</th><th>Statut</th><th>Actions</th></tr>
-                </thead>
-                <tbody>
-                  {registrations.map(reg => (
-                    <tr key={reg.id}>
-                      <td>{reg.name}</td>
-                      <td>{reg.email}</td>
-                      <td>
-                        <span className="badge" style={{ 
-                          backgroundColor: reg.status === 'accepted' ? 'var(--success-bg)' : reg.status === 'rejected' ? 'var(--danger-bg)' : 'var(--warning-bg)',
-                          color: reg.status === 'accepted' ? 'var(--success)' : reg.status === 'rejected' ? 'var(--danger)' : 'var(--warning)',
-                          padding: '2px 8px', borderRadius: '4px', fontSize: '0.7rem'
-                        }}>
-                          {reg.status}
-                        </span>
-                      </td>
-                      <td>
-                        <div style={{ display:'flex', gap:'0.5rem' }}>
-                          <button className="btn-icon" style={{color:'var(--success)'}} onClick={() => handleUpdateRegStatus(reg.id, 'accepted')}><Check size={14} /></button>
-                          <button className="btn-icon" style={{color:'var(--danger)'}} onClick={() => handleUpdateRegStatus(reg.id, 'rejected')}><X size={14} /></button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

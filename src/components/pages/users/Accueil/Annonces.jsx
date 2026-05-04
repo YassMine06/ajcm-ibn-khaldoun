@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Annonces.css';
-import { annoncesData } from '../../assets/annoncesData';
+import { annoncesData } from '../../../../assets/annoncesData';
 
 const Annonces = () => {
   // Prends les 5 dernières annonces pour la galerie déroulante

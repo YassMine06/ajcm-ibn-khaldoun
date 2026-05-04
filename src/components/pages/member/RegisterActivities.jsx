@@ -21,7 +21,7 @@ export default function RegisterActivities() {
 
   return (
     <div>
-      <h1 className="page-title"><ClipboardList size={24} /> Inscription aux activités</h1>
+      <h1 className="page-title"><ClipboardList size={24} /> Inscription aux événements</h1>
       <div className="cards-grid">
         {events.slice(0, 12).map((ev, i) => {
           const status = registered[ev.folder];

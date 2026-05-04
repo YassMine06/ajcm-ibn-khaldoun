@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AdminCalendar.css';
 import axios from 'axios';
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, Clock, MapPin } from 'lucide-react';
@@ -7,9 +8,17 @@ const MONTHS = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Aoû
 const DAYS = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
 
 export default function AdminCalendar() {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [today] = useState(new Date());
   const [current, setCurrent] = useState(new Date());
+
+  const handleDayClick = (day) => {
+    if (!day) return;
+    // Format YYYY-MM-DD
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    navigate('/admin/annonces', { state: { initialDate: dateStr, openForm: true } });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -129,6 +138,7 @@ export default function AdminCalendar() {
                 transition: 'all 0.2s ease',
                 cursor: day ? 'pointer' : 'default'
               }}
+              onClick={() => handleDayClick(day)}
               onMouseEnter={(e) => { if(day) e.currentTarget.style.backgroundColor = '#EFF6FF'; }}
               onMouseLeave={(e) => { if(day) e.currentTarget.style.backgroundColor = '#FFFFFF'; }}
               >

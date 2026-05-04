@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './NosEvenement.css';
 
-import { eventsData } from '../../assets/eventsData';
-import { categoriesData } from '../../assets/categoriesData';
+import { eventsData } from '../../../../assets/eventsData';
+import { categoriesData } from '../../../../assets/categoriesData';
 
 const evenementsRecents = eventsData.slice(0, 4);
 

@@ -93,6 +93,7 @@ function App() {
           <Route path="partners" element={<PartnersManager />} />
           <Route path="trophies" element={<TrophiesManager />} />
           <Route path="registrations" element={<RegistrationsManager />} />
+          <Route path="registrations/:eventName" element={<RegistrationsManager />} />
           <Route path="ai-module" element={<AIModule />} />
           <Route index element={<Navigate to="statistics" />} />
         </Route>

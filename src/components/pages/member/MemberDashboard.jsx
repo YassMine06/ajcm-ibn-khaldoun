@@ -12,7 +12,7 @@ export default function MemberDashboard() {
   }, []);
 
   const cards = [
-    { label: 'Activités disponibles', value: eventCount, icon: <ClipboardList size={22} />, color: 'var(--green-700)', bg: 'var(--green-100)' },
+    { label: 'Événements disponibles', value: eventCount, icon: <ClipboardList size={22} />, color: 'var(--green-700)', bg: 'var(--green-100)' },
     { label: 'Mes inscriptions',      value: 2,           icon: <Calendar size={22} />,      color: 'var(--gold-600)',   bg: 'var(--gold-100)'  },
     { label: 'Heures de bénévolat',   value: 14,          icon: <Clock size={22} />,         color: 'var(--info)',         bg: 'var(--info-bg)'    },
     { label: 'Badges obtenus',        value: 3,           icon: <Trophy size={22} />,        color: 'var(--gold-600)',     bg: 'var(--gold-100)'   },
