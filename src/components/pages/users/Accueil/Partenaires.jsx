@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Partenaires.css';
 
-const partners = [
-  { logo: 'alaml-sy.png', url: 'https://alaml-sy.com' },
-  { logo: 'fncv.png', url: 'https://fncv.ma/' },
-  { logo: 'mjcc.png', url: 'https://mjcc.gov.ma/' },
-  { logo: 'gorara.png', url: 'https://gorara.org' },
-  { logo: 'hawass.png', url: 'https://web.facebook.com/Hawass.ART.Ghir.Blfen' },
-  { logo: 'madacenter.png', url: 'https://www.madacenter.ma' },
-  { logo: 'mjcc media.png', url: 'https://web.facebook.com/dpmjccmohammedia' },
-  { logo: 'utss.png', url: 'http://www.utss.org.tn/' },
-];
-
 const Partenaires = () => {
+  const [partners, setPartners] = useState([]);
+
+  useEffect(() => {
+    const fetchPartners = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/api/partners');
+        setPartners(res.data);
+      } catch (err) {
+        console.error("Error fetching partners:", err);
+      }
+    };
+    fetchPartners();
+  }, []);
+
+  if (partners.length === 0) return null;
+
   return (
     <section className="partenaires-section" id="partenaires">
       <div className="partenaires-container">
@@ -31,7 +37,10 @@ const Partenaires = () => {
                 className="partner-logo" 
                 key={idx}
               >
-                <img src={`/Partenaria/${encodeURIComponent(partner.logo)}`} alt={`Partenaire ${idx}`} />
+                <img 
+                  src={partner.logo?.startsWith('data:') ? partner.logo : `/Partenaria/${encodeURIComponent(partner.logo)}`} 
+                  alt={partner.name || `Partenaire ${idx}`} 
+                />
               </a>
             ))}
           </div>

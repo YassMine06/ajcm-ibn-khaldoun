@@ -4,9 +4,12 @@ import Navbar from '../../Navbar';
 import Footer from '../../Footer';
 import './AnnoncesPage.css';
 
+import { Calendar, MapPin, Search } from 'lucide-react';
+
 const AnnoncesPage = () => {
   const [annonces, setAnnonces] = useState([]);
   const [selectedAnnonce, setSelectedAnnonce] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -38,6 +41,11 @@ const AnnoncesPage = () => {
     setSelectedAnnonce(null);
   };
 
+  const filteredAnnonces = annonces.filter(a => 
+    a.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    a.text?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="annonces-page page-enter">
       <Navbar />
@@ -57,20 +65,32 @@ const AnnoncesPage = () => {
 
       <main className="annonces-main">
         <div className="container">
-          <div className="section-header center-align" style={{ marginBottom: '3rem' }}>
-            <h2>Toutes les annonces</h2>
-            <div className="section-divider"></div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
+            <div className="section-header" style={{ margin: 0 }}>
+              <h2 style={{ fontSize: '2rem' }}>Toutes les annonces</h2>
+              <div className="section-divider" style={{ margin: '0.5rem 0 0 0' }}></div>
+            </div>
+            
+            <div className="annonce-search-bar">
+              <Search size={18} className="search-icon" />
+              <input 
+                type="text" 
+                placeholder="Rechercher une annonce..." 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
           </div>
           
           <div className="annonces-masonry-grid">
-            {annonces.map((annonce) => (
+            {filteredAnnonces.map((annonce) => (
               <div 
                 key={annonce.id} 
                 className="annonce-grid-item"
                 onClick={() => setSelectedAnnonce(annonce)}
               >
                 <div className="annonce-img-wrap">
-                  <img src={`/${annonce.image}`} alt={`Annonce ${annonce.id}`} loading="lazy" />
+                  <img src={annonce.image.startsWith('data:') ? annonce.image : `/${annonce.image}`} alt={`Annonce ${annonce.id}`} loading="lazy" />
                   {annonce.type && (
                     <div className={`annonce-type-badge ${annonce.type}`}>
                       {annonce.type === 'evenement' ? 'Événement' : 'Actualité'}
@@ -85,13 +105,30 @@ const AnnoncesPage = () => {
                     </svg>
                   </div>
                 </div>
-                {(annonce.title || annonce.text || annonce.date) && (
-                  <div className="annonce-text-preview">
-                    {annonce.title && <h3 className="annonce-card-title">{annonce.title}</h3>}
-                    {annonce.date && <div className="annonce-card-date">{annonce.date}</div>}
-                    {annonce.text && <p>{annonce.text.substring(0, 60)}...</p>}
+                
+                <div className="annonce-card-body">
+                  <h3 className="annonce-card-title">{annonce.title || 'Sans titre'}</h3>
+                  
+                  <div className="annonce-card-meta">
+                    <div className="meta-item">
+                      <Calendar size={14} className="meta-icon date-icon" />
+                      <span>{annonce.date || '--/--/----'}</span>
+                    </div>
+                    {annonce.location && (
+                      <>
+                        <span className="meta-divider">|</span>
+                        <div className="meta-item">
+                          <MapPin size={14} className="meta-icon loc-icon" />
+                          <span>{annonce.location}</span>
+                        </div>
+                      </>
+                    )}
                   </div>
-                )}
+                  
+                  {annonce.text && !annonce.title && (
+                    <p className="annonce-card-desc">{annonce.text.substring(0, 80)}...</p>
+                  )}
+                </div>
               </div>
             ))}
           </div>

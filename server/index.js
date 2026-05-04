@@ -13,6 +13,7 @@ app.use(express.json());
 const BASE_DIR = path.resolve(__dirname, '../src/assets');
 const EVENTS_FILE = path.join(BASE_DIR, 'eventsData.js');
 const ANNONCES_FILE = path.join(BASE_DIR, 'annoncesData.js');
+const PARTNERS_FILE = path.join(BASE_DIR, 'partnersData.js');
 const USERS_FILE = path.join(__dirname, 'users.json');
 
 const os = require('os');
@@ -145,6 +146,40 @@ app.delete('/api/annonces/:id', (req, res) => {
   let annonces = readDataFile(ANNONCES_FILE, 'annoncesData');
   annonces = annonces.filter(a => a.id !== req.params.id);
   writeDataFile(ANNONCES_FILE, 'annoncesData', annonces);
+  res.json({ success: true });
+});
+
+// --- Partners Endpoints ---
+app.get('/api/partners', (req, res) => {
+  const partners = readDataFile(PARTNERS_FILE, 'partnersData');
+  res.json(partners);
+});
+
+app.post('/api/partners', (req, res) => {
+  const partners = readDataFile(PARTNERS_FILE, 'partnersData');
+  const newId = (Math.max(...partners.map(p => parseInt(p.id) || 0), 0) + 1).toString();
+  const newPartner = { ...req.body, id: newId };
+  partners.push(newPartner);
+  writeDataFile(PARTNERS_FILE, 'partnersData', partners);
+  res.status(201).json(newPartner);
+});
+
+app.put('/api/partners/:id', (req, res) => {
+  const partners = readDataFile(PARTNERS_FILE, 'partnersData');
+  const index = partners.findIndex(p => p.id.toString() === req.params.id.toString());
+  if (index !== -1) {
+    partners[index] = { ...partners[index], ...req.body };
+    writeDataFile(PARTNERS_FILE, 'partnersData', partners);
+    res.json(partners[index]);
+  } else {
+    res.status(404).json({ error: 'Partner not found' });
+  }
+});
+
+app.delete('/api/partners/:id', (req, res) => {
+  let partners = readDataFile(PARTNERS_FILE, 'partnersData');
+  partners = partners.filter(p => p.id.toString() !== req.params.id.toString());
+  writeDataFile(PARTNERS_FILE, 'partnersData', partners);
   res.json({ success: true });
 });
 
