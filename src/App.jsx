@@ -3,39 +3,39 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import ScrollToTop from './components/ScrollToTop';
 
 // Public pages
-import HomePage from './components/pages/users/HomePage';
-import DescriptionPage from './components/pages/users/DescriptionPage';
-import EvenementsPage from './components/pages/users/EvenementsPage';
-import EventDetailsPage from './components/pages/users/EventDetailsPage';
-import AnnoncesPage from './components/pages/users/AnnoncesPage';
-import InscriptionPage from './components/pages/users/InscriptionPage';
-import CalendrierPage from './components/pages/users/CalendrierPage';
-import ContactPage from './components/pages/users/ContactPage';
+import HomePage from './pages/users/HomePage';
+import DescriptionPage from './pages/users/DescriptionPage';
+import EvenementsPage from './pages/users/EvenementsPage';
+import EventDetailsPage from './pages/users/EventDetailsPage';
+import AnnoncesPage from './pages/users/AnnoncesPage';
+import InscriptionPage from './pages/users/InscriptionPage';
+import CalendrierPage from './pages/users/CalendrierPage';
+import ContactPage from './pages/users/ContactPage';
 import './App.css';
 import './platform.css';
 
 // Platform pages
-import LoginPage from './components/pages/LoginPage';
-import AdminLayout from './components/layouts/AdminLayout';
-import MemberLayout from './components/layouts/MemberLayout';
+import LoginPage from './pages/LoginPage';
+import AdminLayout from './layouts/AdminLayout';
+import MemberLayout from './layouts/MemberLayout';
 
-import Statistics from './components/pages/admin/Statistics';
-import ActivitiesManager from './components/pages/admin/ActivitiesManager';
-import AnnoncesManager from './components/pages/admin/AnnoncesManager';
-import UsersManager from './components/pages/admin/UsersManager';
-import AdminCalendar from './components/pages/admin/AdminCalendar';
-import PartnersManager from './components/pages/admin/PartnersManager';
-import TrophiesManager from './components/pages/admin/TrophiesManager';
-import RegistrationsManager from './components/pages/admin/RegistrationsManager';
-import AIModule from './components/pages/admin/AIModule';
+import Statistics from './pages/admin/Statistics';
+import ActivitiesManager from './pages/admin/ActivitiesManager';
+import AnnoncesManager from './pages/admin/AnnoncesManager';
+import UsersManager from './pages/admin/UsersManager';
+import AdminCalendar from './pages/admin/AdminCalendar';
+import PartnersManager from './pages/admin/PartnersManager';
+import RegistrationsManager from './pages/admin/RegistrationsManager';
+import AIModule from './pages/admin/AIModule';
 
-import MemberProfile from './components/pages/member/MemberProfile';
-import EditProfile from './components/pages/member/EditProfile';
-import RegisterActivities from './components/pages/member/RegisterActivities';
+import MemberProfile from './pages/member/MemberProfile';
+import EditProfile from './pages/member/EditProfile';
+import RegisterActivities from './pages/member/RegisterActivities';
 
-import MemberCalendar from './components/pages/member/MemberCalendar';
-import MemberHistory from './components/pages/member/MemberHistory';
-import MemberNotifications from './components/pages/member/MemberNotifications';
+import MemberCalendar from './pages/member/MemberCalendar';
+import MemberHistory from './pages/member/MemberHistory';
+import MemberNotifications from './pages/member/MemberNotifications';
+
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -93,7 +93,6 @@ function App() {
           <Route path="members" element={<UsersManager />} />
           <Route path="calendar" element={<AdminCalendar />} />
           <Route path="partners" element={<PartnersManager />} />
-          <Route path="trophies" element={<TrophiesManager />} />
           <Route path="registrations" element={<RegistrationsManager />} />
           <Route path="registrations/:eventName" element={<RegistrationsManager />} />
           <Route path="ai-module" element={<AIModule />} />
